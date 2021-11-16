@@ -42,7 +42,10 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-            <button className="btn gradient-1 text-light mx-2">Login</button>
+
+            <Link to="/login" className="btn gradient-1 text-light mx-2">
+              Login
+            </Link>
             <button className="btn btn-outline-dark mx-2">Signup</button>
           </div>
         </div>
