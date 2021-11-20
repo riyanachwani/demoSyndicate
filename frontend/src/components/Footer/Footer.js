@@ -107,7 +107,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <p className="copyright">AngelAI© 2021</p>
+              <p className="copyright">Syndicate© 2021</p>
             </div>
           </div>
         </div>

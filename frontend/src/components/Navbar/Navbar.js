@@ -6,7 +6,7 @@ export default function Navbar() {
       <nav class="navbar navbar-expand-lg text-dark bg-transparent shadow-sm mt-sm-0 fixed-top ">
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="/">
-            Angel Ai
+            Syndicate
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
