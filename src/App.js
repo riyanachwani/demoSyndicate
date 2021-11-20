@@ -6,8 +6,10 @@ import Navbar from "./components/Navbar/Navbar";
 import { Route, Routes } from "react-router";
 import Login from "./components/Login/Login.js";
 import Signup from "./components/Login/Signup";
-import UserHome from "./components/postLogin/UserHome";
+import Dashboard from "./components/postLogin/Dashboard";
 import UserProfile from "./components/postLogin/UserProfile";
+import Template from "./components/postLogin/Template/Template";
+import Background from "./components/postLogin/Background";
 
 function App() {
   return (
@@ -19,8 +21,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/userhome" element={<UserHome />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/template" element={<Template />} />
+          <Route path="/background" element={<Background />} />
         </Routes>
       </main>
       <Footer />
