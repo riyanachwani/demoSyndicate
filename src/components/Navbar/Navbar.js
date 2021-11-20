@@ -46,7 +46,9 @@ export default function Navbar() {
             <Link to="/login" className="btn gradient-1 text-light mx-2">
               Login
             </Link>
-            <button className="btn btn-outline-dark mx-2">Signup</button>
+            <Link to="/signup" className="btn btn-outline-dark mx-2">
+              Signup
+            </Link>
           </div>
         </div>
       </nav>
