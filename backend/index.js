@@ -49,7 +49,7 @@ app.post("/signup", async (req,res) => {
         location:location
     }); 
 
-try{
+try{ 
 await signup.save();
 res.send("Inserted");
 }catch(err){
