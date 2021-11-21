@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
-
+import Axios from 'axios'
 export default function Login() {
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const addToList = () => {
+    Axios.post("http://localhost:3001/login", {
+      email: email,
+      password: password,
+    });
+  };
+
   return (
     <>
       <section class="py-5 bg-white my-5">
@@ -15,6 +25,9 @@ export default function Login() {
                 <div class="form-floating mb-3">
                   <input
                     type="email"
+                    onChange={(event) =>{
+                      setEmail(event.target.value);
+                    }}
                     class="form-control"
                     id="floatingInput"
                     placeholder="name@example.com"
@@ -24,6 +37,9 @@ export default function Login() {
                 <div class="form-floating mb-3">
                   <input
                     type="password"
+                    onChange={(event) =>{
+                      setPassword(event.target.value);
+                    }}
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"
@@ -35,7 +51,7 @@ export default function Login() {
                     <input type="checkbox" value="remember-me" /> Remember me
                   </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-custom-1" type="submit">
+                <button class="w-100 btn btn-lg btn-custom-1" type="submit" onClick={addToList}>
                   Login
                 </button>
                 <hr class="my-4" />

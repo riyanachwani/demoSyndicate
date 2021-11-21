@@ -1,6 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
+import Axios from 'axios'
+
 export default function Signup() {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("");
+
+  const addToList = () => {
+    Axios.post("http://localhost:3001/signup", {
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      location: location,
+    });
+  };
+
   return (
     <>
       <section class="py-5 my-5">
@@ -16,9 +35,12 @@ export default function Signup() {
                     type="text"
                     class="form-control"
                     id="floatingInput"
-                    placeholder="Your Name"
+                    placeholder="Company Name"
+                    onChange={(event) =>{
+                      setName(event.target.value);
+                    }}
                   />
-                  <label for="floatingInput">Your Name</label>
+                  <label for="floatingInput">Company Name</label>
                 </div>{" "}
                 <div class="form-floating mb-3">
                   <input
@@ -26,6 +48,9 @@ export default function Signup() {
                     class="form-control"
                     id="floatingInput"
                     placeholder="name@example.com"
+                    onChange={(event) =>{
+                      setEmail(event.target.value);
+                    }}
                   />
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -35,6 +60,9 @@ export default function Signup() {
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"
+                    onChange={(event) =>{
+                      setPassword(event.target.value);
+                    }}
                   />
                   <label for="floatingPassword">Password</label>
                 </div>{" "}
@@ -44,15 +72,30 @@ export default function Signup() {
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Confirm Password"
+                    onChange={(event) =>{
+                      setConfirmPassword(event.target.value);
+                    }}
                   />
                   <label for="floatingPassword">Confirm Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Location"
+                    onChange={(event) =>{
+                      setLocation(event.target.value);
+                    }}
+                  />
+                  <label for="floatingInput">Location</label>
                 </div>
                 <div class="checkbox mb-3">
                   <label>
                     <input type="checkbox" value="remember-me" /> Remember me
                   </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-dark" type="submit">
+                <button class="w-100 btn btn-lg btn-dark" type="submit" onClick={addToList}>
                   Signup
                 </button>
                 <hr class="my-4" />
