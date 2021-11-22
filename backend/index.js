@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const cors=require("cors");
 const app= express();
 
-const LoginModel=require("./models/Login");
-//const SignupModel=require("./models2/Signup");
+//const LoginModel=require("./models/Login");
+const SignupModel=require("./models/Signup");
 
 app.use(express.json());
 app.use(cors());
@@ -16,7 +16,7 @@ mongoose.connect(
 }
 );
 
-app.post("/login", async (req,res) => {
+/*app.post("/login", async (req,res) => {
     const email=req.body.email;
     const password=req.body.password;
     const login=new LoginModel({
@@ -32,8 +32,8 @@ console.log(err);
 }
 
 });
+*/
 
-/*
 app.post("/signup", async (req,res) => {
     const name=req.body.name;
     const email=req.body.email;
@@ -48,7 +48,6 @@ app.post("/signup", async (req,res) => {
         confirmPassword:confirmPassword,
         location:location
     }); 
-
 try{ 
 await signup.save();
 res.send("Inserted");
@@ -56,7 +55,18 @@ res.send("Inserted");
 console.log(err);
 }
 });
-*/
+
+
+app.get("/read", async (req,res) => {
+
+    LoginModel.find({},(err,result) => {
+        if(err){
+            res.send(err);
+        }
+        res.send(result);
+    })
+});
+
 app.listen(3001, ()=>{
      console.log("Sever running on port 3001");
 });
