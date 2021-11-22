@@ -12,6 +12,6 @@ const LoginSchema=new mongoose.Schema({
 });
 
 //Pass it to mongoose
-const Login = mongoose.model("syndicate-backend",LoginSchema,"Login");
+const Login = mongoose.model("Login",LoginSchema);
 
 module.exports=Login;

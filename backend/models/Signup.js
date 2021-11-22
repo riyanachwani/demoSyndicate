@@ -24,6 +24,6 @@ const SignupSchema=new mongoose.Schema({
 });
 
 //Pass it to mongoose
-const Signup = mongoose.model("syndicate-backend",SignupSchema,"Signup");
+const Signup = mongoose.model("Signup",SignupSchema);
 
 module.exports=Signup;
