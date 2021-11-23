@@ -34,20 +34,69 @@ console.log(err);
 });
 */
 
-app.post("/signup", async (req,res) => {
-    const name=req.body.name;
+app.get("/", async (req,res) => {
+   /* const name=req.body.name;
     const email=req.body.email;
     const password=req.body.password;
     const confirmPassword=req.body.confirmPassword;
     const location=req.body.location;
+    const template=req.body.template;
+
     
-    const signup=new SignupModel({
-        name:name,
-        email:email,
-        password:password,
-        confirmPassword:confirmPassword,
-        location:location
+    const tempnav=new SignupModel({
+        companyName : "Syndicate",
+        about : "aboutTitle",
+        services : "servicesTitle", 
+}); 
+
+    const temp=new SignupModel({
+            templateNav: tempnav,
     }); 
+*/
+
+    const signup=new SignupModel({
+        name:"name",
+        email:"email",
+        password:"password",
+        confirmPassword:"confirmPassword",
+        location:"location",
+        template:[
+            {
+                navbar:[
+                    {
+                        companyName:"Syndicate",
+                        about:"Abouttitle",
+                        services:"serviceTitle",
+                    },
+                ],
+                
+                  heroSection:[
+                    {
+                        heroTitle:"heroTitle",
+                        heroContent:"heroContent",
+                    },
+                ],
+
+                
+                aboutSection:[
+                    {
+                        aboutTitle:"aboutTitle",
+                        aboutContent:"aboutContent",
+                    },
+                ],
+
+                serviceSection:[
+                    {
+                        serviceTitle:"serviceTitle",
+                        serviceContent1:"serviceContent1",
+                        serviceContent2:"serviceContent2",
+                        serviceContent3:"serviceContent3",
+                    },
+                ],
+            },
+        ],
+    }); 
+
 try{ 
 await signup.save();
 res.send("Inserted");
@@ -57,7 +106,7 @@ console.log(err);
 });
 
 
-app.get("/read", async (req,res) => {
+/*app.get("/read", async (req,res) => {
 
     LoginModel.find({},(err,result) => {
         if(err){
@@ -65,7 +114,7 @@ app.get("/read", async (req,res) => {
         }
         res.send(result);
     })
-});
+});*/
 
 app.listen(3001, ()=>{
      console.log("Sever running on port 3001");
