@@ -1,19 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors=require("cors");
-const app= express();
+const cors = require("cors");
+const app = express();
 
 //const LoginModel=require("./models/Login");
-const SignupModel=require("./models/Signup");
+const SignupModel = require("./models/Signup");
 
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-    "mongodb+srv://riyanachwani:12345@syndicate-backend.plbbe.mongodb.net/Syndicate?retryWrites=true&w=majority", 
-    {
-    useNewUrlParser:true,
-}
+  "mongodb+srv://sumit123:123@syndicate-backend.plbbe.mongodb.net/Syndicate?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+  }
 );
 
 /*app.post("/login", async (req,res) => {
@@ -105,7 +105,7 @@ console.log(err);
 }
 });
 
-
+  
 /*app.get("/read", async (req,res) => {
 
     LoginModel.find({},(err,result) => {
@@ -115,7 +115,6 @@ console.log(err);
         res.send(result);
     })
 });*/
-
-app.listen(3001, ()=>{
-     console.log("Sever running on port 3001");
+app.listen(3001, () => {
+  console.log("Sever running on port 3001");
 });
