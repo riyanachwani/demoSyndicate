@@ -106,15 +106,20 @@ console.log(err);
 });
 
   
-/*app.get("/read", async (req,res) => {
-
-    LoginModel.find({},(err,result) => {
+app.get("/read", async (req,res) => {
+    const name=req.body.name;
+    const email=req.body.email;
+    const password=req.body.password;
+    const confirmPassword=req.body.confirmPassword;
+    const location=req.body.location;
+    // $where:{name:name}
+    SignupModel.find({}, (err,result) => {
         if(err){
             res.send(err);
         }
         res.send(result);
-    })
-});*/
+    });
+});
 
 app.listen(3001, () => {
   console.log("Sever running on port 3001");

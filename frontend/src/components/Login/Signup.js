@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+//import {useEffect} from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
 import Axios from 'axios'
 
@@ -9,6 +10,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
+  //const [List, setList] = useState([]);
 
   const addToList = () => {
     Axios.post("http://localhost:3001/signup", {
@@ -19,6 +21,20 @@ export default function Signup() {
       location: location,
   });
   }
+
+  /*
+  useEffect(() => {
+    Axios.get("http://localhost:3001/read").then((response) => {
+      setList(response.data);
+  });
+  },[]);
+
+  
+  <h1>List</h1>
+  {List.map((val,key) => {
+    return <div key={key}><h1>{val.email}</h1></div>
+  })}
+  */
   return (
     <>
       <section class="py-5 my-5">
