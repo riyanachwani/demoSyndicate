@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function TempNavbar() {
   return (
     <>
-      <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <div data-bs-toggle="modal" data-bs-target="#navbarModal">
         <nav class="navbar navbar-expand-lg text-dark bg-transparent mt-sm-0  ">
           <div class="container p-3">
             <Link class="navbar-brand text-dark fw-bolder" to="/">
@@ -45,7 +45,7 @@ export default function TempNavbar() {
 
       <div
         class="modal fade"
-        id="exampleModal"
+        id="navbarModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -54,7 +54,7 @@ export default function TempNavbar() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Modal title
+                Edit Navbar
               </h5>
               <button
                 type="button"
