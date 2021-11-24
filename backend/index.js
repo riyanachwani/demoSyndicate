@@ -34,15 +34,15 @@ console.log(err);
 });
 */
 
-app.get("/", async (req,res) => {
-   /* const name=req.body.name;
+app.post("/signup", async (req,res) => {
+    const name=req.body.name;
     const email=req.body.email;
     const password=req.body.password;
     const confirmPassword=req.body.confirmPassword;
     const location=req.body.location;
-    const template=req.body.template;
+    //const template=req.body.template;
 
-    
+    /* 
     const tempnav=new SignupModel({
         companyName : "Syndicate",
         about : "aboutTitle",
@@ -55,11 +55,11 @@ app.get("/", async (req,res) => {
 */
 
     const signup=new SignupModel({
-        name:"name",
-        email:"email",
-        password:"password",
-        confirmPassword:"confirmPassword",
-        location:"location",
+        name:name,
+        email:email,
+        password:password,
+        confirmPassword:confirmPassword,
+        location:location,
         template:[
             {
                 navbar:[
@@ -115,6 +115,7 @@ console.log(err);
         res.send(result);
     })
 });*/
+
 app.listen(3001, () => {
   console.log("Sever running on port 3001");
 });

@@ -17,15 +17,6 @@ export default function Signup() {
       password: password,
       confirmPassword: confirmPassword,
       location: location,
-      template: [
-        {
-        templateNav: [
-          {
-        companyName : "Syndicate",
-        about : "aboutTitle",
-        services : "servicesTitle", }
-      ],
-      }],
   });
   }
   return (
