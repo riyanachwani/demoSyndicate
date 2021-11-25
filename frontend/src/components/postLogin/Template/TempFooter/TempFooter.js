@@ -1,6 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import Axios from 'axios'
+
 
 export default function TempFooter() {
+  const [name, setName] = useState("");
+  const [insta, setInsta] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+
+  const addToList = () => {
+    Axios.post("http://localhost:3001/signup", {
+      name: name,
+      insta:insta,
+      twitter:twitter,
+      linkedIn:linkedIn,
+  });
+  }
+
+  
   return (
     <>
       <div data-bs-toggle="modal" data-bs-target="#footerModal">
@@ -56,6 +73,9 @@ export default function TempFooter() {
                     class="form-control"
                     id="Navbartitle"
                     Value="comapany Name"
+                    onChange={(event) =>{
+                      setName(event.target.value);
+                    }}
                   />
                 </div>{" "}
                 <div class="mb-3">
@@ -63,22 +83,31 @@ export default function TempFooter() {
                     type="text"
                     class="form-control"
                     id="Navbartitle"
-                    Value="Add Instagram Hnadle"
+                    Value="Add Instagram Handle"
+                    onChange={(event) =>{
+                      setInsta(event.target.value);
+                    }}
                   />{" "}
                   <input
                     type="text"
                     class="form-control"
                     id="Navbartitle"
-                    Value="Add Twitter Hnadle"
+                    Value="Add Twitter Handle"
+                    onChange={(event) =>{
+                      setTwitter(event.target.value);
+                    }}
                   />{" "}
                   <input
                     type="text"
                     class="form-control"
                     id="Navbartitle"
-                    Value="Add Linkein Hnadle"
+                    Value="Add LinkedIn Handle"
+                    onChange={(event) =>{
+                      setLinkedIn(event.target.value);
+                    }}
                   />
                 </div>{" "}
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" onClick={addToList}>
                   Save
                 </button>
               </form>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-//import {useEffect} from "react";
+import {useEffect} from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
 import Axios from 'axios'
 
@@ -10,8 +10,9 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
-  //const [List, setList] = useState([]);
-
+  const [List, setList] = useState([]);
+  const [newName, setNewName] = useState("");
+  
   const addToList = () => {
     Axios.post("http://localhost:3001/signup", {
       name: name,
@@ -22,19 +23,24 @@ export default function Signup() {
   });
   }
 
-  /*
+  
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
       setList(response.data);
   });
   },[]);
 
+  const updateList = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      id: id,
+      newName: newName,
+    });
+  };
   
-  <h1>List</h1>
-  {List.map((val,key) => {
-    return <div key={key}><h1>{val.email}</h1></div>
-  })}
-  */
+  const deleteList = (id) => {
+    Axios.delete(`http://localhost:3001/delete/${id}`);
+  };
+
   return (
     <>
       <section class="py-5 my-5">
@@ -121,6 +127,31 @@ export default function Signup() {
             </div>
           </div>
         </div>
+        <form>
+        <div align="center">
+        <h1>List</h1>
+         {List.map((val,key) => {
+         return (
+         <div key={key} className="signup">
+           <h1>{val.name}</h1>
+         <input 
+         type="text" 
+         placeholder="Enter"
+         onChange={(event) =>{
+          setNewName(event.target.value);
+        }}
+      />
+         <button type="submit" onClick={() => updateList(val._id)}>
+           Update
+         </button>
+         <button type="submit" onClick={() => deleteList(val._id)}>
+           Delete
+         </button>
+        </div>
+      );
+         })
+         }</div>
+         </form>
       </section>
     </>
   );
