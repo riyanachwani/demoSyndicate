@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
-//const LoginModel=require("./models/Login");
 const SignupModel = require("./models/Signup");
+const FooterModel = require("./models/TempFooter");
+
 
 app.use(express.json());
 app.use(cors());
@@ -16,24 +17,8 @@ mongoose.connect(
   }
 );
 
-/*app.post("/login", async (req,res) => {
-    const email=req.body.email;
-    const password=req.body.password;
-    const login=new LoginModel({
-        email:email,
-        password:password
-    }); 
 
-try{
-await login.save();
-res.send("Inserted");
-}catch(err){
-console.log(err);
-}
-
-});
-*/
-
+/* 
 app.post("/signup", async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -41,18 +26,6 @@ app.post("/signup", async (req, res) => {
   const confirmPassword = req.body.confirmPassword;
   const location = req.body.location;
   //const template=req.body.template;
-
-  /* 
-    const tempnav=new SignupModel({
-        companyCcomapnyName : "Syndicate",
-        about : "aboutTitle",
-        services : "servicesTitle", 
-}); 
-
-    const temp=new SignupModel({
-            templateNav: tempnav,
-    }); 
-*/
 
   const signup = new SignupModel({
     name: name,
@@ -119,6 +92,56 @@ app.post("/signup", async (req, res) => {
     console.log(err);
   }
 });
+*/
+
+app.post("/signup", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  const location = req.body.location;
+  //const template=req.body.template;
+
+  const signup = new SignupModel({
+    name: name,
+    email: email,
+    password: password,
+    confirmPassword: confirmPassword,
+    location: location,
+  });
+
+  try {
+    await signup.save();
+    res.send("Inserted");
+    console.log("inserted");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/footer", async (req, res) => {
+  const footerTitle = req.body.footerTitle;
+  const instagram = req.body.instagram;
+  const twitter = req.body.twitter;
+  const linkedIn = req.body.linkedIn;
+  
+  const footer = new FooterModel({
+    footerTitle: footerTitle,
+    instagram: instagram,
+    twitter: twitter,
+    linkedIn: linkedIn,
+  });
+
+  try {
+    await footer.save();
+    res.send("Inserted");
+    console.log("inserted");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 
 app.get("/read", async (req, res) => {
   const name = req.body.name;

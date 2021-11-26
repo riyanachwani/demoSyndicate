@@ -3,19 +3,20 @@ import Axios from 'axios'
 
 
 export default function TempFooter() {
-  const [name, setName] = useState("");
-  const [insta, setInsta] = useState("");
+  const [footerTitle, setFooterTitle] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
 
   const addToList = () => {
-    Axios.post("http://localhost:3001/signup", {
-      name: name,
-      insta:insta,
+    Axios.post("http://localhost:3001/footer", {
+      footerTitle:footerTitle,
+      instagram:instagram,
       twitter:twitter,
       linkedIn:linkedIn,
   });
   }
+  
 
   
   return (
@@ -50,7 +51,6 @@ export default function TempFooter() {
           </footer>
         </div>
       </div>
-
       <div class="modal fade" id="footerModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -74,7 +74,7 @@ export default function TempFooter() {
                     id="Navbartitle"
                     Value="comapany Name"
                     onChange={(event) =>{
-                      setName(event.target.value);
+                      setFooterTitle(event.target.value);
                     }}
                   />
                 </div>{" "}
@@ -85,7 +85,7 @@ export default function TempFooter() {
                     id="Navbartitle"
                     Value="Add Instagram Handle"
                     onChange={(event) =>{
-                      setInsta(event.target.value);
+                      setInstagram(event.target.value);
                     }}
                   />{" "}
                   <input
@@ -108,8 +108,11 @@ export default function TempFooter() {
                   />
                 </div>{" "}
                 <button type="submit" class="btn btn-primary" onClick={addToList}>
-                  Save
+                  Add
                 </button>
+                <button type="submit" class="btn btn-primary" >
+                  Save
+                </button>  
               </form>
             </div>
           </div>
