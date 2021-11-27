@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 export default function TempNavbar() {
   const [navbarModalRef, setNavbarModalState] = useState(false);
@@ -17,6 +18,13 @@ export default function TempNavbar() {
       boxShadow: "0px 6px 20px #00000045",
     },
   };
+
+  const addToList = () => {
+    Axios.post("http://localhost:3001/navbar", {
+      companyName: companyName,
+    });
+  };
+
   return (
     <>
       <nav
@@ -73,6 +81,9 @@ export default function TempNavbar() {
             class="form-control input-filed"
             id="company-name"
             placeholder="Enter Your Company Name"
+            onChange={(event) => {
+              setCompanyName(event.target.value);
+            }}
           />
         </div>{" "}
         <div className="mt-3 d-flex justify-content-between">
@@ -84,6 +95,7 @@ export default function TempNavbar() {
               } else {
                 setCompanyName(document.getElementById("company-name").value);
 
+                addToList();
                 setNavbarModalState(false);
               }
             }}
