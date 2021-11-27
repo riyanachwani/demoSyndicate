@@ -64,7 +64,6 @@ export default function TempNavbar() {
         isOpen={navbarModalRef}
         style={customStyles}
         onRequestClose={() => setNavbarModalState(false)}
-        style={customStyles}
       >
         <h3 className="my-3">Edit Navbar</h3>
         <div class="mb-3">

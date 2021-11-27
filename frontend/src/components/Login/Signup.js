@@ -34,16 +34,16 @@ export default function Signup() {
     });
   }, []);
 
-  const updateList = (id) => {
-    Axios.put("http://localhost:3001/update", {
-      id: id,
-      newName: newName,
-    });
-  };
+  // const updateList = (id) => {
+  //   Axios.put("http://localhost:3001/update", {
+  //     id: id,
+  //     newName: newName,
+  //   });
+  // };
 
-  const deleteList = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`);
-  };
+  // const deleteList = (id) => {
+  //   Axios.delete(`http://localhost:3001/delete/${id}`);
+  // };
 
   const logindata = () => {
     return (

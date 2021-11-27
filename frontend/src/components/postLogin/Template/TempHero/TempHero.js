@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
   const [heroTitle, setHeroTitle] = useState("Welcome To syndicate");
-  const [subTitle, setSubTitle] = useState(
+  const [herosubTitle, setHeroSubTitle] = useState(
     "hey this is syndicate, we make your websites in no time"
   );
 
@@ -35,7 +35,7 @@ export default function TempHero() {
           /> */}
         <h1 class="display-5 fw-bold">{heroTitle}</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">{subTitle}</p>
+          <p class="lead mb-4">{heroubTitle}</p>
           {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                 Primary button
@@ -68,6 +68,7 @@ export default function TempHero() {
         <div class="mb-3">
           <textarea
             type="text"
+            id="hero-subtitle"
             class="form-control input-filed"
             placeholder="Enter Hero Sub heading "
           />
@@ -81,6 +82,7 @@ export default function TempHero() {
                 alert("please enter something!");
               } else {
                 setHeroTitle(document.getElementById("hero-title").value);
+                setHeroSubTitle(document.getElementById("hero-subtitle").value);
 
                 setHeroModalState(false);
               }

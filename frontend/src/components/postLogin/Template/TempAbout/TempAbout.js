@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export default function TempAbout() {
   const [aboutModalRef, setAboutModalState] = useState(false);
   const [aboutTitle, setAboutTitle] = useState("About");
@@ -68,6 +68,7 @@ export default function TempAbout() {
         <div class="mb-3">
           <textarea
             type="text"
+            id="about-subtitle"
             class="form-control input-filed"
             placeholder="Enter About Sub heading "
           />
@@ -81,6 +82,9 @@ export default function TempAbout() {
                 alert("please enter something!");
               } else {
                 setAboutTitle(document.getElementById("about-title").value);
+                setAboutSubTitle(
+                  document.getElementById("about-subtitle").value
+                );
 
                 setAboutModalState(false);
               }

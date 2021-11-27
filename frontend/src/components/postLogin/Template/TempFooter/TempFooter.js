@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export default function TempFooter() {
   const [footerModalRef, setFooterModalState] = useState(false);
   const [companyName, setComapnyName] = useState("syndicate");
@@ -44,19 +44,24 @@ export default function TempFooter() {
 
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3">
-              <a class="text-muted" href={instagram} target="_blank">
+              <a
+                class="text-muted"
+                href={instagram}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {" "}
                 <i class="fab fa-instagram fs-3"></i>
               </a>
             </li>
             <li class="ms-3">
-              <a class="text-muted" href="/#" target="_blank">
+              <a class="text-muted" href="/#" target="_blank" rel="noreferrer">
                 {" "}
                 <i class="fab fa-facebook fs-3"></i>
               </a>
             </li>
             <li class="ms-3">
-              <a class="text-muted" href="/#" target="_blank">
+              <a class="text-muted" href="/#" target="_blank" rel="noreferrer">
                 {" "}
                 <i class="fab fa-twitter fs-3"></i>
               </a>
@@ -99,6 +104,14 @@ export default function TempFooter() {
                 setInstagram(
                   "https://instagram.com/" +
                     document.getElementById("insta").value
+                );
+                setTwitter(
+                  "https://twitter.com/" +
+                    document.getElementById("twitter").value
+                );
+                setLinkedIn(
+                  "https://linkedIn.com/in/" +
+                    document.getElementById("linkedin").value
                 );
 
                 setFooterModalState(false);

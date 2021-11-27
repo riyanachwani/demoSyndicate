@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export default function TempServiecs() {
   const [servicesModalRef, setServicesModalState] = useState(false);
   const [servicesTitle, setServicesTitle] = useState("OUr Services");
@@ -89,7 +89,7 @@ export default function TempServiecs() {
         <div class="mb-3">
           <textarea
             type="text"
-            id="service-sub-heading"
+            id="service-subtitle"
             class="form-control input-filed"
             placeholder="Enter Services Sub heading "
           />
@@ -151,6 +151,9 @@ export default function TempServiecs() {
               } else {
                 setServicesTitle(
                   document.getElementById("services-title").value
+                );
+                setServicesSubTitle(
+                  document.getElementById("services-subtitle").value
                 );
 
                 setServicesModalState(false);
