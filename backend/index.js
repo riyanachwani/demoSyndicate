@@ -240,14 +240,21 @@ app.get("/read", async (req, res) => {
   });
 });
 
-/*
+
 app.put("/update", async (req, res) => {
   const newName = req.body.newName;
+  const newEmail = req.body.newEmail;
+  const newPassword = req.body.newPassword;
+  const newLocation = req.body.newLocation;
   const id = req.body.id;
   try {
-     await SignupModel.findById(id, (err, updatedName) => {
-      updatedName.name= newName;
-      updatedName.save();
+     await SignupModel.findById(id, (err, updatedDetails) => {
+      updatedDetails.name= newName;
+      updatedDetails.email= newEmail;
+      updatedDetails.password= newPassword;
+      updatedDetails.location= newLocation;
+      
+      updatedDetails.save();
       res.send("Update");
     });
   
@@ -256,12 +263,13 @@ app.put("/update", async (req, res) => {
   }
 });
 
+
 app.delete("/delete/:id", async (req,res) => {
 const id=req.params.id;
 await SignupModel.findByIdAndRemove(id).exec();
 res.send("deleted");  
 })
-*/
+
 
 app.listen(3001, () => {
   console.log("Sever running on port 3001");

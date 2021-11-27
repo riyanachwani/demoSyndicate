@@ -3,26 +3,29 @@ import {useEffect} from "react";
 import Axios from 'axios'
 
 export default function UserProfile() {
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newLocation, setNewLocation] = useState("");
   const [List, setList] = useState([]);
     useEffect(() => {
         Axios.get("http://localhost:3001/read").then((response) => {
           setList(response.data);
       });
       },[]);
-
-      const deleteList = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`);
-      };    
-
-      /*
-      const message = () => {
-        return (
-          <h1>Account Deleted</h1>
-        );
-      };
-*/
+    
+  const updateList = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      id: id,
+      newName: newName,
+      newEmail: newEmail,
+      newPassword: newPassword,
+      newLocation: newLocation,
+    });
+  };
+  
       return (
-        <form>
+          <form>
           <div className="container my-5 py-5">
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 my-3">
@@ -81,7 +84,10 @@ export default function UserProfile() {
                         type="text"
                         className="form-control"
                         id="exampleFormControlInput1"
-                        value={val.name}
+                        placeholder={val.name}
+                        onChange={(event) => {
+                            setNewName(event.target.value);
+                          }}
                       /> 
                       </>
                       );
@@ -105,7 +111,10 @@ export default function UserProfile() {
                           type="email"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.email}
+                          placeholder={val.email}
+                          onChange={(event) => {
+                            setNewEmail(event.target.value);
+                          }}
                         />
                         </>
                       );
@@ -130,7 +139,10 @@ export default function UserProfile() {
                           type="password"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.password}
+                          placeholder={val.password}
+                          onChange={(event) => {
+                            setNewPassword(event.target.value);
+                          }}
                         />
                         </>
                       );
@@ -157,7 +169,10 @@ export default function UserProfile() {
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.location}
+                          placeholder={val.location}
+                          onChange={(event) => {
+                            setNewLocation(event.target.value);
+                          }}
                         />
                         </>
                       );
@@ -178,15 +193,15 @@ export default function UserProfile() {
                         id="submit"
                         name="submit"
                         className="btn btn-outline-dark me-2"
-                        onClick={() => deleteList(val._id)}
                       >
-                        Delete Account
+                        Cancel
                       </button>
                       <button
                         type="submit"
                         id="submit"
                         name="submit"
                         className="btn btn-custom-1 mx-2"
+                        onClick={() => updateList(val._id)}
                       >
                         Update
                       </button>
