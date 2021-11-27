@@ -22,6 +22,7 @@ export default function UserProfile() {
       };
 */
       return (
+        <form>
           <div className="container my-5 py-5">
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 my-3">
@@ -173,7 +174,7 @@ export default function UserProfile() {
                      return (
                        <>
                         <button
-                        type="button"
+                        type="submit"
                         id="submit"
                         name="submit"
                         className="btn btn-outline-dark me-2"
@@ -182,7 +183,7 @@ export default function UserProfile() {
                         Delete Account
                       </button>
                       <button
-                        type="button"
+                        type="submit"
                         id="submit"
                         name="submit"
                         className="btn btn-custom-1 mx-2"
@@ -201,5 +202,6 @@ export default function UserProfile() {
           </div>
         </div>
       </div>
+      </form>
     );
 }
