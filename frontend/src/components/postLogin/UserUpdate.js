@@ -3,24 +3,21 @@ import {useEffect} from "react";
 import Axios from 'axios'
 
 export default function UserProfile() {
+  const [newName] = useState("");
   const [List, setList] = useState([]);
     useEffect(() => {
         Axios.get("http://localhost:3001/read").then((response) => {
           setList(response.data);
       });
       },[]);
-
-      const deleteList = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`);
-      };    
-
-      /*
-      const message = () => {
-        return (
-          <h1>Account Deleted</h1>
-        );
-      };
-*/
+    
+  const updateList = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      id: id,
+      newName: newName,
+    });
+  };
+  
       return (
           <div className="container my-5 py-5">
         <div className="row">
@@ -80,7 +77,7 @@ export default function UserProfile() {
                         type="text"
                         className="form-control"
                         id="exampleFormControlInput1"
-                        value={val.name}
+                        placeholder={val.name}
                       /> 
                       </>
                       );
@@ -104,7 +101,7 @@ export default function UserProfile() {
                           type="email"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.email}
+                          placeholder={val.email}
                         />
                         </>
                       );
@@ -129,7 +126,7 @@ export default function UserProfile() {
                           type="password"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.password}
+                          placeholder={val.password}
                         />
                         </>
                       );
@@ -156,7 +153,7 @@ export default function UserProfile() {
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          value={val.location}
+                          placeholder={val.location}
                         />
                         </>
                       );
@@ -177,7 +174,6 @@ export default function UserProfile() {
                         id="submit"
                         name="submit"
                         className="btn btn-outline-dark me-2"
-                        onClick={() => deleteList(val._id)}
                       >
                         Delete Account
                       </button>
@@ -186,6 +182,7 @@ export default function UserProfile() {
                         id="submit"
                         name="submit"
                         className="btn btn-custom-1 mx-2"
+                        onClick={() => updateList(val._id)}
                       >
                         Update
                       </button>

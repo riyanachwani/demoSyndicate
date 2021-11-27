@@ -16,7 +16,7 @@ export default function Signup() {
     return val.name;
   });
 
-  const [newName, setNewName] = useState(username);
+  //const [newName, setNewName] = useState(username);
   console.log(username);
   const addToList = () => {
     Axios.post("http://localhost:3001/signup", {
@@ -45,6 +45,7 @@ export default function Signup() {
   //   Axios.delete(`http://localhost:3001/delete/${id}`);
   // };
 
+  /*
   const logindata = () => {
     return (
       <>
@@ -63,8 +64,9 @@ export default function Signup() {
       </>
     );
   };
-
-  return (
+*/
+  
+return (
     <>
       <section class="py-5 my-5">
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
@@ -154,13 +156,7 @@ export default function Signup() {
             </div>
           </div>
         </div>
-        <form>
-          <div align="center">
-            <h1>List</h1>
-            {logindata()}
-          </div>
-        </form>
-      </section>
+        </section>
     </>
   );
 }
