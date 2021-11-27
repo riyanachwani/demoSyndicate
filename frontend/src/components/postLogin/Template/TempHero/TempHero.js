@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
   const [heroTitle, setHeroTitle] = useState("Welcome To syndicate");

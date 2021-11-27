@@ -22,14 +22,14 @@ export default function TempFooter() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/footer", {
-      companyName: companyName,
-      instagram: instagram,
-      twitter: twitter,
-      linkedIn: linkedIn,
-    });
-  };
+  // const addToList = () => {
+  //   Axios.post("http://localhost:3001/footer", {
+  //     companyName: companyName,
+  //     instagram: instagram,
+  //     twitter: twitter,
+  //     linkedIn: linkedIn,
+  //   });
+  // };
 
   return (
     <>
@@ -55,13 +55,23 @@ export default function TempFooter() {
               </a>
             </li>
             <li class="ms-3">
-              <a class="text-muted" href="/#" target="_blank" rel="noreferrer">
+              <a
+                class="text-muted"
+                href={twitter}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {" "}
                 <i class="fab fa-facebook fs-3"></i>
               </a>
             </li>
             <li class="ms-3">
-              <a class="text-muted" href="/#" target="_blank" rel="noreferrer">
+              <a
+                class="text-muted"
+                href={linkedIn}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {" "}
                 <i class="fab fa-twitter fs-3"></i>
               </a>
@@ -91,6 +101,22 @@ export default function TempFooter() {
             class="form-control input-filed"
             id="insta"
             placeholder="Instagram Handle"
+          />
+        </div>{" "}
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control input-filed"
+            id="twitter"
+            placeholder="Twitter Handle"
+          />
+        </div>{" "}
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control input-filed"
+            id="linkedin"
+            placeholder="linkedIn Handle"
           />
         </div>
         <div className="mt-3 d-flex justify-content-between">
