@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-// import Axios from "axios";
+import Axios from "axios";
 // import { Link } from "react-router-dom";
 export default function TempFooter() {
   const [footerModalRef, setFooterModalState] = useState(false);
-  const [companyName, setComapnyName] = useState("syndicate");
+  const [companyName, setCompanyName] = useState("syndicate");
   const [instagram, setInstagram] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
@@ -23,14 +23,14 @@ export default function TempFooter() {
     },
   };
 
-  // const addToList = () => {
-  //   Axios.post("http://localhost:3001/footer", {
-  //     companyName: companyName,
-  //     instagram: instagram,
-  //     twitter: twitter,
-  //     linkedIn: linkedIn,
-  //   });
-  // };
+   const addToList = () => {
+     Axios.post("http://localhost:3001/footer", {
+       companyName: companyName,
+       instagram: instagram,
+       twitter: twitter,
+       linkedIn: linkedIn,
+     });
+   };
 
   return (
     <>
@@ -96,6 +96,9 @@ export default function TempFooter() {
             class="form-control input-filed"
             id="compnay-name"
             placeholder="Enter Your Company Name"
+            onChange={(event) => {
+              setCompanyName(event.target.value);
+            }}
           />
         </div>{" "}
         <div class="mb-3">
@@ -104,6 +107,9 @@ export default function TempFooter() {
             class="form-control input-filed"
             id="insta"
             placeholder="Instagram Handle"
+            onChange={(event) => {
+              setInstagram(event.target.value);
+            }}
           />
         </div>{" "}
         <div class="mb-3">
@@ -112,6 +118,9 @@ export default function TempFooter() {
             class="form-control input-filed"
             id="twitter"
             placeholder="Twitter Handle"
+            onChange={(event) => {
+              setTwitter(event.target.value);
+            }}
           />
         </div>{" "}
         <div class="mb-3">
@@ -120,6 +129,9 @@ export default function TempFooter() {
             class="form-control input-filed"
             id="linkedin"
             placeholder="linkedIn Handle"
+            onChange={(event) => {
+              setLinkedIn(event.target.value);
+            }}
           />
         </div>
         <div className="mt-3 d-flex justify-content-between">
@@ -129,7 +141,7 @@ export default function TempFooter() {
               if (!document.getElementById("compnay-name").value) {
                 alert("please enter something!");
               } else {
-                setComapnyName(document.getElementById("compnay-name").value);
+                setCompanyName(document.getElementById("compnay-name").value);
                 setInstagram(
                   "https://instagram.com/" +
                     document.getElementById("insta").value
@@ -142,6 +154,7 @@ export default function TempFooter() {
                   "https://linkedIn.com/in/" +
                     document.getElementById("linkedin").value
                 );
+                addToList();
 
                 setFooterModalState(false);
               }

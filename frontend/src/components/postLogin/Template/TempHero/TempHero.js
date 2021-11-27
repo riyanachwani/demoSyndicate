@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
+import Axios from "axios";
 // import { Link } from "react-router-dom";
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
@@ -21,6 +22,14 @@ export default function TempHero() {
       boxShadow: "0px 6px 20px #00000045",
     },
   };
+
+  const addToList = () => {
+    Axios.post("http://localhost:3001/hero", {
+      heroTitle: heroTitle,
+      herosubTitle: herosubTitle,
+    });
+  };
+
   return (
     <>
       <div
@@ -64,6 +73,9 @@ export default function TempHero() {
             class="form-control input-filed"
             id="hero-title"
             placeholder="Enter Hero Section Ttitle"
+            onChange={(event) => {
+              setHeroTitle(event.target.value);
+            }}
           />
         </div>{" "}
         <div class="mb-3">
@@ -72,6 +84,9 @@ export default function TempHero() {
             id="hero-subtitle"
             class="form-control input-filed"
             placeholder="Enter Hero Sub heading "
+            onChange={(event) => {
+              setHeroSubTitle(event.target.value);
+            }}
           />
         </div>{" "}
         <br />
@@ -85,6 +100,7 @@ export default function TempHero() {
                 setHeroTitle(document.getElementById("hero-title").value);
                 setHeroSubTitle(document.getElementById("hero-subtitle").value);
 
+                addToList();
                 setHeroModalState(false);
               }
             }}

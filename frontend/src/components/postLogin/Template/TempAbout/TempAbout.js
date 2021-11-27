@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
+import Axios from "axios";
 // import { Link } from "react-router-dom";
 export default function TempAbout() {
   const [aboutModalRef, setAboutModalState] = useState(false);
@@ -21,6 +22,14 @@ export default function TempAbout() {
       boxShadow: "0px 6px 20px #00000045",
     },
   };
+
+  const addToList = () => {
+    Axios.post("http://localhost:3001/about", {
+      aboutTitle: aboutTitle,
+      aboutsubTitle:aboutsubTitle,
+    });
+  };
+
   return (
     <>
       <div
@@ -64,6 +73,9 @@ export default function TempAbout() {
             class="form-control input-filed"
             id="about-title"
             placeholder="Enter About Section Ttitle"
+            onChange={(event) => {
+              setAboutTitle(event.target.value);
+            }}
           />
         </div>{" "}
         <div class="mb-3">
@@ -72,6 +84,9 @@ export default function TempAbout() {
             id="about-subtitle"
             class="form-control input-filed"
             placeholder="Enter About Sub heading "
+            onChange={(event) => {
+              setAboutSubTitle(event.target.value);
+            }}
           />
         </div>{" "}
         <br />
@@ -87,6 +102,7 @@ export default function TempAbout() {
                   document.getElementById("about-subtitle").value
                 );
 
+                addToList();
                 setAboutModalState(false);
               }
             }}
