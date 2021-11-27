@@ -17,12 +17,12 @@ export default function UserHome() {
                         With supporting text below as a natural lead-in to
                         additional content.
                       </p>
-                      <Link to="/template" class="btn btn-custom-1">
+                      <Link to="/startinfo" class="btn btn-custom-1">
                         Edit
                       </Link>{" "}
-                      <Link to="/template" class="btn btn-custom-1">
+                      {/* <Link to="/template" class="btn btn-custom-1">
                         Visit
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

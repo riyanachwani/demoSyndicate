@@ -18,7 +18,9 @@ export default function Template() {
               </Link>
             </div>
 
-            <button className="btn btn-dark">Preview</button>
+            <Link to="/preview" className="btn btn-dark">
+              Preview
+            </Link>
           </div>
           {/* <!-- Call to action--> */}
           <aside class=" border rounded-5 p-4 p-sm-5 mt-5">

@@ -1,4 +1,5 @@
 import "./css/App.css";
+import ReactModal from "react-modal";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home";
 import About from "./components/Pages/About";
@@ -10,12 +11,15 @@ import Dashboard from "./components/postLogin/Dashboard";
 import UserProfile from "./components/postLogin/UserProfile";
 import Template from "./components/postLogin/Template/Template";
 import Background from "./components/postLogin/Background";
+import Preview from "./components/postLogin/Preview";
+
+ReactModal.setAppElement("#root");
 
 function App() {
   return (
     <>
-      <Navbar />
       <main>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -27,6 +31,11 @@ function App() {
           <Route path="/background" element={<Background />} />
         </Routes>
       </main>
+      <div>
+        <Routes>
+          <Route path="/preview" element={<Preview />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );

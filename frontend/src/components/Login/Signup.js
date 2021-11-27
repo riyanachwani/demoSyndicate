@@ -1,18 +1,23 @@
-import React, {useState} from "react";
-import {useEffect} from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
-import Axios from 'axios'
+import Axios from "axios";
 
 export default function Signup() {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
+
   const [List, setList] = useState([]);
-  const [newName, setNewName] = useState("");
-  
+
+  const username = List.map((val) => {
+    return val.name;
+  });
+
+  const [newName, setNewName] = useState(username);
+  console.log(username);
   const addToList = () => {
     Axios.post("http://localhost:3001/signup", {
       name: name,
@@ -20,15 +25,14 @@ export default function Signup() {
       password: password,
       confirmPassword: confirmPassword,
       location: location,
-  });
-  }
+    });
+  };
 
-  
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((response) => {
       setList(response.data);
-  });
-  },[]);
+    });
+  }, []);
 
   const updateList = (id) => {
     Axios.put("http://localhost:3001/update", {
@@ -36,9 +40,28 @@ export default function Signup() {
       newName: newName,
     });
   };
-  
+
   const deleteList = (id) => {
     Axios.delete(`http://localhost:3001/delete/${id}`);
+  };
+
+  const logindata = () => {
+    return (
+      <>
+        {List.map((val, id) => {
+          return (
+            <>
+              <input
+                value={newName}
+                onChange={(event) => {
+                  setNewName(event.target.value);
+                }}
+              />
+            </>
+          );
+        })}
+      </>
+    );
   };
 
   return (
@@ -57,7 +80,7 @@ export default function Signup() {
                     class="form-control"
                     id="floatingInput"
                     placeholder="Company Name"
-                    onChange={(event) =>{
+                    onChange={(event) => {
                       setName(event.target.value);
                     }}
                   />
@@ -69,7 +92,7 @@ export default function Signup() {
                     class="form-control"
                     id="floatingInput"
                     placeholder="name@example.com"
-                    onChange={(event) =>{
+                    onChange={(event) => {
                       setEmail(event.target.value);
                     }}
                   />
@@ -81,7 +104,7 @@ export default function Signup() {
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"
-                    onChange={(event) =>{
+                    onChange={(event) => {
                       setPassword(event.target.value);
                     }}
                   />
@@ -93,7 +116,7 @@ export default function Signup() {
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Confirm Password"
-                    onChange={(event) =>{
+                    onChange={(event) => {
                       setConfirmPassword(event.target.value);
                     }}
                   />
@@ -105,7 +128,7 @@ export default function Signup() {
                     class="form-control"
                     id="floatingInput"
                     placeholder="Location"
-                    onChange={(event) =>{
+                    onChange={(event) => {
                       setLocation(event.target.value);
                     }}
                   />
@@ -116,7 +139,11 @@ export default function Signup() {
                     <input type="checkbox" value="remember-me" /> Remember me
                   </label>
                 </div>
-                <button class="w-100 btn btn-lg btn-dark" type="submit" onClick={addToList}>
+                <button
+                  class="w-100 btn btn-lg btn-dark"
+                  type="submit"
+                  onClick={addToList}
+                >
                   Signup
                 </button>
                 <hr class="my-4" />
@@ -128,31 +155,11 @@ export default function Signup() {
           </div>
         </div>
         <form>
-        <div align="center">
-        <h1>List</h1>
-         {List.map((val,key) => {
-         return (
-         <div key={key} className="signup">
-           <h1>{val.name}</h1>
-         <input 
-         type="text" 
-         placeholder="Enter"
-         onChange={(event) =>{
-          setNewName(event.target.value);
-        }}
-      />
-         <button type="submit" onClick={() => updateList(val._id)}>
-           Update
-         </button>
-         <button type="submit" onClick={() => deleteList(val._id)}>
-           Delete
-         </button>
-        </div>
-      );
-         })
-         }
-         </div>
-         </form>
+          <div align="center">
+            <h1>List</h1>
+            {logindata()}
+          </div>
+        </form>
       </section>
     </>
   );

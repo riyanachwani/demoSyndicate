@@ -1,123 +1,120 @@
-import React, {useState} from "react";
-import Axios from 'axios'
-
-
+import React, { useState } from "react";
+import ReactModal from "react-modal";
+import Axios from "axios";
+import { Link } from "react-router-dom";
 export default function TempFooter() {
-  const [footerTitle, setFooterTitle] = useState("");
+  const [footerModalRef, setFooterModalState] = useState(false);
+  const [companyName, setComapnyName] = useState("syndicate");
   const [instagram, setInstagram] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
 
+  const customStyles = {
+    overlay: {
+      backgroundColor: "var(--color-purple-700)",
+    },
+    content: {
+      width: "40%",
+      height: "fit-content",
+      padding: "1.6em",
+      margin: "auto",
+      boxShadow: "0px 6px 20px #00000045",
+    },
+  };
+
   const addToList = () => {
     Axios.post("http://localhost:3001/footer", {
-      footerTitle:footerTitle,
-      instagram:instagram,
-      twitter:twitter,
-      linkedIn:linkedIn,
-  });
-  }
-  
+      companyName: companyName,
+      instagram: instagram,
+      twitter: twitter,
+      linkedIn: linkedIn,
+    });
+  };
 
-  
   return (
     <>
-      <div data-bs-toggle="modal" data-bs-target="#footerModal">
-        <div class="container">
-          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-              <span class="text-muted">&copy; 2021 Company, Inc</span>
-            </div>
-
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-              <li class="ms-3">
-                <a class="text-muted" href="/#">
-                  {" "}
-                  <i class="fab fa-instagram fs-3"></i>
-                </a>
-              </li>
-              <li class="ms-3">
-                <a class="text-muted" href="/#">
-                  {" "}
-                  <i class="fab fa-facebook fs-3"></i>
-                </a>
-              </li>
-              <li class="ms-3">
-                <a class="text-muted" href="/#">
-                  {" "}
-                  <i class="fab fa-twitter fs-3"></i>
-                </a>
-              </li>
-            </ul>
-          </footer>
-        </div>
-      </div>
-      <div class="modal fade" id="footerModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Edit Footer
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Navbartitle"
-                    Value="comapany Name"
-                    onChange={(event) =>{
-                      setFooterTitle(event.target.value);
-                    }}
-                  />
-                </div>{" "}
-                <div class="mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Navbartitle"
-                    Value="Add Instagram Handle"
-                    onChange={(event) =>{
-                      setInstagram(event.target.value);
-                    }}
-                  />{" "}
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Navbartitle"
-                    Value="Add Twitter Handle"
-                    onChange={(event) =>{
-                      setTwitter(event.target.value);
-                    }}
-                  />{" "}
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Navbartitle"
-                    Value="Add LinkedIn Handle"
-                    onChange={(event) =>{
-                      setLinkedIn(event.target.value);
-                    }}
-                  />
-                </div>{" "}
-                <button type="submit" class="btn btn-primary" onClick={addToList}>
-                  Add
-                </button>
-                <button type="submit" class="btn btn-primary" >
-                  Save
-                </button>  
-              </form>
-            </div>
+      <div
+        class="container template-hover"
+        onClick={() => setFooterModalState(true)}
+      >
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="text-muted">&copy; 2021 Company, Inc</span>
           </div>
-        </div>
+
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+              <a class="text-muted" href={instagram} target="_blank">
+                {" "}
+                <i class="fab fa-instagram fs-3"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="text-muted" href="/#" target="_blank">
+                {" "}
+                <i class="fab fa-facebook fs-3"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="text-muted" href="/#" target="_blank">
+                {" "}
+                <i class="fab fa-twitter fs-3"></i>
+              </a>
+            </li>
+          </ul>
+        </footer>
       </div>
+
+      {/* react modal */}
+      <ReactModal
+        isOpen={footerModalRef}
+        style={customStyles}
+        onRequestClose={() => setFooterModalState(false)}
+      >
+        <h3 className="my-3">Edit Footer Section</h3>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control input-filed"
+            id="compnay-name"
+            placeholder="Enter Your Company Name"
+          />
+        </div>{" "}
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control input-filed"
+            id="insta"
+            placeholder="Instagram Handle"
+          />
+        </div>
+        <div className="mt-3 d-flex justify-content-between">
+          <button
+            className="btn btn-custom-1"
+            onClick={() => {
+              if (!document.getElementById("compnay-name").value) {
+                alert("please enter something!");
+              } else {
+                setComapnyName(document.getElementById("compnay-name").value);
+                setInstagram(
+                  "https://instagram.com/" +
+                    document.getElementById("insta").value
+                );
+
+                setFooterModalState(false);
+              }
+            }}
+          >
+            Save task
+          </button>
+          <button
+            className="btn btn-dark"
+            onClick={() => setFooterModalState(false)}
+          >
+            Close
+          </button>
+        </div>
+      </ReactModal>
     </>
   );
 }
