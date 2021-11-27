@@ -17,6 +17,7 @@ export default function TempFooter() {
       width: "40%",
       height: "fit-content",
       padding: "1.6em",
+      borderRadius: "14px",
       margin: "auto",
       boxShadow: "0px 6px 20px #00000045",
     },

@@ -6,7 +6,6 @@ const app = express();
 const SignupModel = require("./models/Signup");
 const FooterModel = require("./models/TempFooter");
 
-
 app.use(express.json());
 app.use(cors());
 
@@ -16,7 +15,6 @@ mongoose.connect(
     useNewUrlParser: true,
   }
 );
-
 
 /* 
 app.post("/signup", async (req, res) => {
@@ -124,7 +122,7 @@ app.post("/footer", async (req, res) => {
   const instagram = req.body.instagram;
   const twitter = req.body.twitter;
   const linkedIn = req.body.linkedIn;
-  
+
   const footer = new FooterModel({
     footerTitle: footerTitle,
     instagram: instagram,
@@ -141,8 +139,6 @@ app.post("/footer", async (req, res) => {
   }
 });
 
-
-
 app.get("/read", async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -150,6 +146,7 @@ app.get("/read", async (req, res) => {
   const confirmPassword = req.body.confirmPassword;
   const location = req.body.location;
   // $where:{CcomapnyName:CcomapnyName}
+  console.log(req.body);
   SignupModel.find({}, (err, result) => {
     if (err) {
       res.send(err);
@@ -184,3 +181,4 @@ res.send("deleted");
 app.listen(3001, () => {
   console.log("Sever running on port 3001");
 });
+

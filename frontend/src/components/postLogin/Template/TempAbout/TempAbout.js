@@ -14,6 +14,7 @@ export default function TempAbout() {
     },
     content: {
       width: "40%",
+      borderRadius: "14px",
       height: "fit-content",
       padding: "1.6em",
       margin: "auto",

@@ -16,7 +16,7 @@ export default function TempServiecs() {
       width: "40%",
       padding: "1.6em",
       margin: "auto",
-
+      borderRadius: "14px",
       boxShadow: "0px 6px 20px #00000045",
     },
   };
