@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import Axios from "axios";
+// import Axios from "axios";
 // import { Link } from "react-router-dom";
 export default function TempFooter() {
   const [footerModalRef, setFooterModalState] = useState(false);
@@ -39,7 +39,9 @@ export default function TempFooter() {
       >
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <div class="col-md-4 d-flex align-items-center">
-            <span class="text-muted">&copy; 2021 Company, Inc</span>
+            <span class="text-muted">
+              {companyName} &copy; 2021 Company, Inc
+            </span>
           </div>
 
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
