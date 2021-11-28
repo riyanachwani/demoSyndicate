@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// var session = require("express-session");
+
+// const bcrypt = require("bcrypt");
 
 const SignupModel = require("./models/Signup");
 const FooterModel = require("./models/TempFooter");
@@ -14,6 +16,13 @@ const servicesModel = require("./models/TempServices");
 
 app.use(express.json());
 app.use(cors());
+
+app.use(
+  session({
+    id: "user",
+    secret: "user",
+  })
+);
 
 mongoose.connect(
   "mongodb+srv://sumit123:123@syndicate-backend.plbbe.mongodb.net/Syndicate?retryWrites=true&w=majority",
@@ -34,154 +43,51 @@ app.post("/api/login", async (req, res) => {
       { email: user.email, password: user.password },
       "syndicate-system-123 "
     );
+    // var setsession = window.sessionStorage.setItem("animals", "cat");
     res.header("auth-token", token).send(token);
   }
 });
 
-// ******** signup *********
-// app.post("/signup", async (req, res) => {
+// app.get("/read", async (req, res) => {
 //   const name = req.body.name;
 //   const email = req.body.email;
 //   const password = req.body.password;
+//   const confirmPassword = req.body.confirmPassword;
 //   const location = req.body.location;
-//   //const template=req.body.template;
-
-//   const signup = new SignupModel({
-//     name: name,
-//     email: email,
-//     password: newpassword,
-//     location: location,
+//   // name:"riya"
+//   SignupModel.find({}, (err, result) => {
+//     if (err) {
+//       res.send(err);
+//     }
+//     res.send(result);
 //   });
-
-//   try {
-//     await signup.save();
-//     res.send("Inserted");
-//     console.log("inserted");
-//   } catch (err) {
-//     console.log(err);
-//   }
 // });
 
-app.post("/footer", async (req, res) => {
-  const companyName = req.body.companyName;
-  const instagram = req.body.instagram;
-  const twitter = req.body.twitter;
-  const linkedIn = req.body.linkedIn;
+// app.get("/read/:id", function (req, res) {
+//   const userId = req.params.user;
+//   SignupModel.find({ _id: userId })
+//     .sort({ date: -1 })
+//     .then((posts) => {
+//       // res.status(200).json(posts);
+//       res.send(posts.name);
+//       res.send(posts.email);
+//     })
+//     .catch((err) =>
+//       res.status(404).json({ nopostfound: "No post found with that ID" })
+//     );
+// });
 
-  const footer = new FooterModel({
-    companyName: companyName,
-    instagram: instagram,
-    twitter: twitter,
-    linkedIn: linkedIn,
-  });
-
-  try {
-    await footer.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/navbar", async (req, res) => {
-  const companyName = req.body.companyName;
-
-  const navbar = new NavbarModel({
-    companyName: companyName,
-  });
-
-  try {
-    await navbar.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/hero", async (req, res) => {
-  const heroTitle = req.body.heroTitle;
-  const herosubTitle = req.body.herosubTitle;
-
-  const hero = new heroModel({
-    heroTitle: heroTitle,
-    herosubTitle: herosubTitle,
-  });
-
-  try {
-    await hero.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/about", async (req, res) => {
-  const aboutTitle = req.body.aboutTitle;
-  const aboutsubTitle = req.body.aboutsubTitle;
-
-  const about = new aboutModel({
-    aboutTitle: aboutTitle,
-    aboutsubTitle: aboutsubTitle,
-  });
-
-  try {
-    await about.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/services", async (req, res) => {
-  const servicesTitle = req.body.servicesTitle;
-  const servicesSubTitle = req.body.servicesSubTitle;
-  const services1Title = req.body.services1Title;
-  const services1Desc = req.body.services1Desc;
-  const services2Title = req.body.services2Title;
-  const services2Desc = req.body.services2Desc;
-  const services3Title = req.body.services3Title;
-  const services3Desc = req.body.services3Desc;
-
-  const services = new servicesModel({
-    servicesTitle: servicesTitle,
-    servicesSubTitle: servicesSubTitle,
-    services1Title: services1Title,
-    services1Desc: services1Desc,
-    services2Title: services2Title,
-    services2Desc: services2Desc,
-    services3Title: services3Title,
-    services3Desc: services3Desc,
-  });
-
-  try {
-    await services.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.get("/read", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-  const location = req.body.location;
-  // name:"riya"
-  SignupModel.find({}, (err, result) => {
-    if (err) {
+app.get("/read/:id", function (req, res) {
+  SignupModel.findById(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
       res.send(err);
-    }
-    res.send(result);
-  });
+    });
 });
 
-app.put("/update", async (req, res) => {
+app.put("/update/:id", async (req, res) => {
   const newName = req.body.newName;
   const newEmail = req.body.newEmail;
   const newPassword = req.body.newPassword;
@@ -190,7 +96,7 @@ app.put("/update", async (req, res) => {
   const navTitle = req.body.navTtile;
   try {
     console.log(req.body.navTitle);
-    await SignupModel.findByIdAndUpdate(id, {
+    await SignupModel.findByIdAndUpdate(req.params.id, {
       $set: {
         name: newName,
         email: newEmail,

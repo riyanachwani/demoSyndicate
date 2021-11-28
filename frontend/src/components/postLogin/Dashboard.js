@@ -6,6 +6,8 @@ export default function Dashboard() {
   if (!token) {
     window.location.href = "/";
   } else {
+    // sessionStorage.setItem("userId", userId);
+
     return (
       <>
         <section class="py-5 bg-white my-5">

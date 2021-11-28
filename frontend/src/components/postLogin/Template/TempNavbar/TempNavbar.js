@@ -6,7 +6,7 @@ export default function TempNavbar() {
   const [navbarModalRef, setNavbarModalState] = useState(false);
   const [user, setUser] = useState([]);
   const [companyName, setCompanyName] = useState("");
-
+  const [userId, setUserId] = useState("");
   const customStyles = {
     overlay: {
       backgroundColor: "var(--color-purple-700)",
@@ -27,22 +27,21 @@ export default function TempNavbar() {
   //   });
   // };
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
+  useEffect((userId) => {
+    Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
   let updatenavbar = (id) => {
     let userId = id;
-
-    Axios.put("http://localhost:3001/update", {
+    Axios.put(`http://localhost:3001/update/${id}`, {
       id: userId,
       navTitle: companyName,
     });
   };
 
-  // console.log(user[0].template[0].navbar[0].companyName);
+  console.log(userId);
   return (
     <>
       <nav
@@ -51,13 +50,13 @@ export default function TempNavbar() {
       >
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {user.map((users) => {
+            {/* {user.map((users) => {
               return users.template.map((template) => {
                 return template.navbar.map((navbar) => {
                   return navbar.companyName;
                 });
               });
-            })}
+            })} */}
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
@@ -118,7 +117,7 @@ export default function TempNavbar() {
                 alert("please enter something!");
               } else {
                 setCompanyName(document.getElementById("company-name").value);
-                updatenavbar(user[0]._id);
+                updatenavbar(user._id);
                 setNavbarModalState(false);
               }
             }}
