@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
 import { Link } from "react-router-dom";
@@ -27,6 +27,14 @@ export default function TempHero() {
     },
   };
 
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
+      setUser(response.data);
+    });
+  }, []);
+
+
   let updatenavbar = (id) => {
     let userId = id;
     Axios.put(`http://localhost:3001/update/${userId}`, {
@@ -43,12 +51,15 @@ export default function TempHero() {
       <div
         class="px-4 py-5 my-5 text-center template-hover"
         onClick={() => setHeroModalState(true)}
-      >
-         <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {user.map((users) => {
+      >   {user.map((users) => {
               user._id=users._id;
+              return users.template.map((template) => {
+                return template.heroSection.map((heroSection) => {
+                  user.heroTitle=heroSection.heroTitle;
+                  user.herosubTitle=heroSection.herosubTitle;
+                });
+              });
             })} 
-          </Link>
         {/* <img
             class="d-block mx-auto mb-4"
             src="/docs/5.1/assets/brand/bootstrap-logo.svg"
@@ -56,9 +67,9 @@ export default function TempHero() {
             width="72"
             height="57"
           /> */}
-        <h1 class="display-5 fw-bold">{heroTitle}</h1>
+        <h1 class="display-5 fw-bold">{user.heroTitle}</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">{herosubTitle}</p>
+          <p class="lead mb-4">{user.herosubTitle}</p>
           {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                 Primary button
@@ -112,6 +123,7 @@ export default function TempHero() {
               } else {
                 setHeroTitle(document.getElementById("hero-title").value);
                 setHeroSubTitle(document.getElementById("hero-subtitle").value);
+                console.log(user.heroTitle);
                 updatenavbar(user._id);
                 setHeroModalState(false);
               }

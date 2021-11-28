@@ -21,16 +21,7 @@ export default function TempNavbar() {
     },
   };
 
-  
-  const check = () => {
-    user.map((users) => {
-      user._id=users._id;
-    })
-  };
-
   useEffect(() => {
-    check();
-    console.log(user._id);
     Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
       setUser(response.data);
     });
@@ -56,12 +47,13 @@ export default function TempNavbar() {
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
             {user.map((users) => {
               user._id=users._id;
-              // return users.template.map((template) => {
-              //   return template.navbar.map((navbar) => {
-              //     return navbar.companyName;
-              //   });
-              // });
-            })} 
+              return users.template.map((template) => {
+                return template.navbar.map((navbar) => {
+                  user.companyName=navbar.companyName;
+                });
+              });
+            })}
+            {user.companyName}
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
@@ -124,7 +116,6 @@ export default function TempNavbar() {
                 setCompanyName(document.getElementById("company-name").value);
                 updatenavbar(user._id);
                 console.log(user._id);
-    
                 setNavbarModalState(false);
               }
             }}

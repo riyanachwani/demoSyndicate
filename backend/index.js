@@ -73,6 +73,7 @@ app.get("/read", async (req, res) => {
 // });
 
 app.get("/read/:id", function (req, res) {
+  console.log(req.params.id);
   SignupModel.findById(req.params.id)
     .then((result) => {
       res.send(result);
@@ -81,6 +82,35 @@ app.get("/read/:id", function (req, res) {
       res.send(err);
     });
 });
+
+// app.put("/updatenav/:id", async (req, res) => {
+//   const newName = req.body.newName;
+//   const newEmail = req.body.newEmail;
+//   const newPassword = req.body.newPassword;
+//   const newLocation = req.body.newLocation;
+//   const id = req.body.id;
+//   const navTitle = req.body.navTitle;
+//   try {
+//     console.log(req.body.navTitle);
+//     await SignupModel.findByIdAndUpdate(req.body.id, {
+//       $set: {
+//         name: newName,
+//         email: newEmail,
+//         password: newPassword,
+//         location: newLocation,
+//       },
+//       $set: {
+//         template: {
+//           navbar: {
+//             companyName: req.body.navTitle,
+//           },
+//         },
+//       },
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
 app.put("/update/:id", async (req, res) => {
@@ -91,10 +121,7 @@ app.put("/update/:id", async (req, res) => {
   const id = req.body.id;
   const navTitle = req.body.navTitle;
   try {
-    console.log(req.body.navTitle);
-    console.log(req.body.heroTitle);
-    console.log(req.body.herosubTitle);
-    
+
     await SignupModel.findByIdAndUpdate(req.body.id, {
       $set: {
         name: newName,
@@ -105,8 +132,8 @@ app.put("/update/:id", async (req, res) => {
       $set: {
         template: {
           navbar: {
-            companyName: req.body.navTitle,
-          },
+          companyName: req.body.navTitle,
+        },
           heroSection: {
             heroTitle: req.body.heroTitle,
             herosubTitle: req.body.herosubTitle,
@@ -118,6 +145,7 @@ app.put("/update/:id", async (req, res) => {
     console.log(err);
   }
 });
+
 
 app.delete("/delete/:id", async (req, res) => {
   const id = req.params.id;
@@ -131,6 +159,7 @@ app.post("/signup", async (req, res) => {
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
   const location = req.body.location;
+  
   //const template=req.body.template;
 
   // const newpassword = bcrypt.hashSync(password, 10);
@@ -196,6 +225,8 @@ app.post("/signup", async (req, res) => {
     await signup.save();
     res.send("Inserted");
     console.log("insetred");
+    
+
   } catch (err) {
     console.log("Duplicate emails");
   }
