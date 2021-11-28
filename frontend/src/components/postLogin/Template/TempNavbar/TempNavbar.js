@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 export default function TempNavbar() {
   const [navbarModalRef, setNavbarModalState] = useState(false);
-  const [companyName, setCompanyName] = useState("syndicate");
+  const [user, setUser] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+
   const customStyles = {
     overlay: {
       backgroundColor: "var(--color-purple-700)",
@@ -19,12 +21,28 @@ export default function TempNavbar() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/navbar", {
-      companyName: companyName,
+  // const addToList = () => {
+  //   Axios.post("http://localhost:3001/navbar", {
+  //     companyName: companyName,
+  //   });
+  // };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/read").then((response) => {
+      setUser(response.data);
+    });
+  }, []);
+
+  let updatenavbar = (id) => {
+    let userId = id;
+
+    Axios.put("http://localhost:3001/update", {
+      id: userId,
+      navTitle: companyName,
     });
   };
 
+  // console.log(user[0].template[0].navbar[0].companyName);
   return (
     <>
       <nav
@@ -33,7 +51,13 @@ export default function TempNavbar() {
       >
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {companyName}
+            {user.map((users) => {
+              return users.template.map((template) => {
+                return template.navbar.map((navbar) => {
+                  return navbar.companyName;
+                });
+              });
+            })}
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
@@ -94,8 +118,7 @@ export default function TempNavbar() {
                 alert("please enter something!");
               } else {
                 setCompanyName(document.getElementById("company-name").value);
-
-                addToList();
+                updatenavbar(user[0]._id);
                 setNavbarModalState(false);
               }
             }}

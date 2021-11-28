@@ -18,7 +18,8 @@ export default function Signup() {
 
   //const [newName, setNewName] = useState(username);
   console.log(username);
-  const addToList = () => {
+  const addToList = (event) => {
+    event.preventDefault();
     Axios.post("http://localhost:3001/signup", {
       name: name,
       email: email,
@@ -65,8 +66,8 @@ export default function Signup() {
     );
   };
 */
-  
-return (
+
+  return (
     <>
       <section class="py-5 my-5">
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
@@ -156,7 +157,7 @@ return (
             </div>
           </div>
         </div>
-        </section>
+      </section>
     </>
   );
 }

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-/*const navbarSchema = mongoose.Schema({
+const navbarSchema = mongoose.Schema({
   companyName: {
     type: String,
     required: true,
@@ -98,7 +98,6 @@ const templateSchema = mongoose.Schema({
   serviceSection: [serviceSectionSchema],
   footerSection: [footerSectionSchema],
 });
-*/
 
 const SignupSchema = new mongoose.Schema({
   name: {
@@ -108,6 +107,7 @@ const SignupSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -121,11 +121,10 @@ const SignupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  
+  template: [templateSchema],
 });
-//template: [templateSchema],
 
 //Pass it to mongoose
-const Signup = mongoose.model("Signup", SignupSchema,"Signup");
+const Signup = mongoose.model("SignupNested", SignupSchema, "SignupNested");
 
 module.exports = Signup;

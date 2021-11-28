@@ -1,25 +1,32 @@
-import React from "react";
-//import {useEffect} from "react";
+import React, { useState } from "react";
+// import { useEffect } from "react";
 import LoginImg from "../../assets/illustration/login.jpg";
-//import Axios from 'axios'
+import Axios from "axios";
 export default function Login() {
-
-  /*const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const addToList = () => {
-    Axios.post("http://localhost:3001/login", {
+
+  // const addToList = () => {
+  //   Axios.post("http://localhost:3001/api/login", {
+  //     email: email,
+  //     password: password,
+  //   });
+  // };
+
+  const loginUser = async (event) => {
+    event.preventDefault();
+    const response = await Axios.post("http://localhost:3001/api/login", {
       email: email,
       password: password,
     });
+    if (response) {
+      localStorage.setItem("token", response.data);
+      alert("Login Successful");
+      window.location.href = "/dashboard";
+    } else {
+      alert("Login Failed");
+    }
   };
-
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setList(response.data);
-    });
-  } , []);  
-*/
 
   return (
     <>
@@ -30,13 +37,13 @@ export default function Login() {
               <img src={LoginImg} alt="" className="img-fluid" />
             </div>
             <div class="col-md-10 mx-auto col-lg-6">
-              <form class="p-4 p-md-5 border rounded-5">
+              <form class="p-4 p-md-5 border rounded-5" onSubmit={loginUser}>
                 <div class="form-floating mb-3">
                   <input
                     type="email"
-                    /*onChange={(event) =>{
+                    onChange={(event) => {
                       setEmail(event.target.value);
-                    }}*/
+                    }}
                     class="form-control"
                     id="floatingInput"
                     placeholder="name@example.com"
@@ -46,9 +53,9 @@ export default function Login() {
                 <div class="form-floating mb-3">
                   <input
                     type="password"
-                    /*onChange={(event) =>{
+                    onChange={(event) => {
                       setPassword(event.target.value);
-                    }}*/
+                    }}
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"

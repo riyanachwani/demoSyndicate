@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const SignupModel = require("./models/Signup");
 const FooterModel = require("./models/TempFooter");
@@ -20,106 +22,45 @@ mongoose.connect(
   }
 );
 
-/* 
-app.post("/signup", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-  const location = req.body.location;
-  //const template=req.body.template;
-
-  const signup = new SignupModel({
-    name: name,
-    email: email,
-    password: password,
-    confirmPassword: confirmPassword,
-    location: location,
-    template: [
-      {
-        navbar: [
-          {
-            companyName: "Syndicate",
-            about: "Abouttitle",
-            services: "serviceTitle",
-          },
-        ],
-
-        heroSection: [
-          {
-            heroTitle: "heroTitle",
-            heroContent: "heroContent",
-          },
-        ],
-
-        aboutSection: [
-          {
-            aboutTitle: "aboutTitle",
-            aboutContent: "aboutContent",
-          },
-        ],
-
-        serviceSection: [
-          {
-            serviceTitle: "serviceTitle",
-            serviceSubTitle: "serviceSubTitle",
-
-            serviceContent1Title: "serviceContent1Title",
-            serviceContent1Desc: "serviceContent1Desc",
-
-            serviceContent2Title: "serviceContent2Title",
-            serviceContent2Desc: "serviceContent2Desc",
-
-            serviceContent3Title: "serviceContent3Title",
-            serviceContent3Desc: "serviceContent3Desc",
-          },
-        ],
-        footerSection: [
-          {
-            footerTitle: "footerTitle",
-            instagram: "instagram",
-            twitter: "twitter",
-            linkedIn: "linkedIn",
-          },
-        ],
-      },
-    ],
+app.post("/api/login", async (req, res) => {
+  const user = await SignupModel.findOne({
+    email: req.body.email,
+    password: req.body.password,
   });
-
-  try {
-    await signup.save();
-    res.send("Inserted");
-    console.log("insetred");
-  } catch (err) {
-    console.log(err);
+  if (!user) {
+    return res.status(400).send("Invalid email or password");
+  } else {
+    const token = jwt.sign(
+      { email: user.email, password: user.password },
+      "syndicate-system-123 "
+    );
+    res.header("auth-token", token).send(token);
   }
 });
-*/
 
-app.post("/signup", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-  const location = req.body.location;
-  //const template=req.body.template;
+// ******** signup *********
+// app.post("/signup", async (req, res) => {
+//   const name = req.body.name;
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const location = req.body.location;
+//   //const template=req.body.template;
 
-  const signup = new SignupModel({
-    name: name,
-    email: email,
-    password: password,
-    confirmPassword: confirmPassword,
-    location: location,
-  });
+//   const signup = new SignupModel({
+//     name: name,
+//     email: email,
+//     password: newpassword,
+//     location: location,
+//   });
 
-  try {
-    await signup.save();
-    res.send("Inserted");
-    console.log("inserted");
-  } catch (err) {
-    console.log(err);
-  }
-});
+//   try {
+//     await signup.save();
+//     res.send("Inserted");
+//     console.log("inserted");
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 app.post("/footer", async (req, res) => {
   const companyName = req.body.companyName;
@@ -240,36 +181,117 @@ app.get("/read", async (req, res) => {
   });
 });
 
-
 app.put("/update", async (req, res) => {
   const newName = req.body.newName;
   const newEmail = req.body.newEmail;
   const newPassword = req.body.newPassword;
   const newLocation = req.body.newLocation;
   const id = req.body.id;
+  const navTitle = req.body.navTtile;
   try {
-     await SignupModel.findById(id, (err, updatedDetails) => {
-      updatedDetails.name= newName;
-      updatedDetails.email= newEmail;
-      updatedDetails.password= newPassword;
-      updatedDetails.location= newLocation;
-      
-      updatedDetails.save();
-      res.send("Update");
+    console.log(req.body.navTitle);
+    await SignupModel.findByIdAndUpdate(id, {
+      $set: {
+        name: newName,
+        email: newEmail,
+        password: newPassword,
+        location: newLocation,
+      },
+      $set: {
+        template: {
+          navbar: {
+            companyName: req.body.navTitle,
+          },
+        },
+      },
     });
-  
+    console.log(req.body.id);
   } catch (err) {
     console.log(err);
   }
 });
 
+app.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await SignupModel.findByIdAndRemove(id).exec();
+  res.send("deleted");
+});
 
-app.delete("/delete/:id", async (req,res) => {
-const id=req.params.id;
-await SignupModel.findByIdAndRemove(id).exec();
-res.send("deleted");  
-})
+app.post("/signup", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  const location = req.body.location;
+  //const template=req.body.template;
 
+  // const newpassword = bcrypt.hashSync(password, 10);
+
+  const signup = new SignupModel({
+    name: name,
+    email: email,
+    password: password,
+    confirmPassword: confirmPassword,
+    location: location,
+    template: [
+      {
+        navbar: [
+          {
+            companyName: "Syndicate",
+            about: "Abouttitle",
+            services: "serviceTitle",
+          },
+        ],
+
+        heroSection: [
+          {
+            heroTitle: "heroTitle",
+            heroContent: "heroContent",
+          },
+        ],
+
+        aboutSection: [
+          {
+            aboutTitle: "aboutTitle",
+            aboutContent: "aboutContent",
+          },
+        ],
+
+        serviceSection: [
+          {
+            serviceTitle: "serviceTitle",
+            serviceSubTitle: "serviceSubTitle",
+
+            serviceContent1Title: "serviceContent1Title",
+            serviceContent1Desc: "serviceContent1Desc",
+
+            serviceContent2Title: "serviceContent2Title",
+            serviceContent2Desc: "serviceContent2Desc",
+
+            serviceContent3Title: "serviceContent3Title",
+            serviceContent3Desc: "serviceContent3Desc",
+          },
+        ],
+        footerSection: [
+          {
+            footerTitle: "footerTitle",
+            instagram: "instagram",
+            twitter: "twitter",
+            linkedIn: "linkedIn",
+          },
+        ],
+      },
+    ],
+  });
+
+  try {
+    await signup.save();
+    res.send("Inserted");
+    console.log("insetred");
+  } catch (err) {
+    console.log("Duplicate emails");
+  }
+});
 
 app.listen(3001, () => {
   console.log("Sever running on port 3001");
