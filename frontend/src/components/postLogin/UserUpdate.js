@@ -15,7 +15,7 @@ export default function UserProfile() {
   }, []);
 
   const updateList = (id) => {
-    Axios.put("http://localhost:3001/update", {
+    Axios.put("http://localhost:3001/userupdate", {
       id: id,
       newName: newName,
       newEmail: newEmail,

@@ -27,7 +27,8 @@ export default function TempNavbar() {
   //   });
   // };
 
-  useEffect((userId) => {
+  useEffect(() => {
+    console.log(user._id);
     Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
       setUser(response.data);
     });
@@ -35,13 +36,13 @@ export default function TempNavbar() {
 
   let updatenavbar = (id) => {
     let userId = id;
-    Axios.put(`http://localhost:3001/update/${id}`, {
+    Axios.put(`http://localhost:3001/update/${userId}`, {
       id: userId,
       navTitle: companyName,
     });
+    
   };
 
-  console.log(userId);
   return (
     <>
       <nav
@@ -50,13 +51,14 @@ export default function TempNavbar() {
       >
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {/* {user.map((users) => {
+            {user.map((users) => {
+              user._id=users._id;
               return users.template.map((template) => {
                 return template.navbar.map((navbar) => {
                   return navbar.companyName;
                 });
               });
-            })} */}
+            })} 
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "

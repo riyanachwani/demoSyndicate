@@ -8,21 +8,16 @@ const jwt = require("jsonwebtoken");
 // const bcrypt = require("bcrypt");
 
 const SignupModel = require("./models/Signup");
-const FooterModel = require("./models/TempFooter");
-const NavbarModel = require("./models/TempNavbar");
-const heroModel = require("./models/TempHero");
-const aboutModel = require("./models/TempAbout");
-const servicesModel = require("./models/TempServices");
 
 app.use(express.json());
 app.use(cors());
 
-app.use(
-  session({
-    id: "user",
-    secret: "user",
-  })
-);
+// app.use(
+//   session({
+//     id: "user",
+//     secret: "user",
+//   })
+// );
 
 mongoose.connect(
   "mongodb+srv://sumit123:123@syndicate-backend.plbbe.mongodb.net/Syndicate?retryWrites=true&w=majority",
@@ -48,20 +43,20 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// app.get("/read", async (req, res) => {
-//   const name = req.body.name;
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const confirmPassword = req.body.confirmPassword;
-//   const location = req.body.location;
-//   // name:"riya"
-//   SignupModel.find({}, (err, result) => {
-//     if (err) {
-//       res.send(err);
-//     }
-//     res.send(result);
-//   });
-// });
+app.get("/read", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  const location = req.body.location;
+  // name:"riya"
+  SignupModel.find({}, (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    res.send(result);
+  });
+});
 
 // app.get("/read/:id", function (req, res) {
 //   const userId = req.params.user;
@@ -77,15 +72,16 @@ app.post("/api/login", async (req, res) => {
 //     );
 // });
 
-app.get("/read/:id", function (req, res) {
-  SignupModel.findById(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
+// app.get("/read/:id", function (req, res) {
+//   SignupModel.findById(req.params.id)
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
 
 app.put("/update/:id", async (req, res) => {
   const newName = req.body.newName;
@@ -93,10 +89,10 @@ app.put("/update/:id", async (req, res) => {
   const newPassword = req.body.newPassword;
   const newLocation = req.body.newLocation;
   const id = req.body.id;
-  const navTitle = req.body.navTtile;
+  const navTitle = req.body.navTitle;
   try {
     console.log(req.body.navTitle);
-    await SignupModel.findByIdAndUpdate(req.params.id, {
+    await SignupModel.findByIdAndUpdate(req.body.id, {
       $set: {
         name: newName,
         email: newEmail,
@@ -111,7 +107,6 @@ app.put("/update/:id", async (req, res) => {
         },
       },
     });
-    console.log(req.body.id);
   } catch (err) {
     console.log(err);
   }
