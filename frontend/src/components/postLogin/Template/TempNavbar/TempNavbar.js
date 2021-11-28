@@ -21,13 +21,15 @@ export default function TempNavbar() {
     },
   };
 
-  // const addToList = () => {
-  //   Axios.post("http://localhost:3001/navbar", {
-  //     companyName: companyName,
-  //   });
-  // };
+  
+  const check = () => {
+    user.map((users) => {
+      user._id=users._id;
+    })
+  };
 
   useEffect(() => {
+    check();
     console.log(user._id);
     Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
       setUser(response.data);
@@ -43,6 +45,7 @@ export default function TempNavbar() {
     
   };
 
+
   return (
     <>
       <nav
@@ -53,11 +56,11 @@ export default function TempNavbar() {
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
             {user.map((users) => {
               user._id=users._id;
-              return users.template.map((template) => {
-                return template.navbar.map((navbar) => {
-                  return navbar.companyName;
-                });
-              });
+              // return users.template.map((template) => {
+              //   return template.navbar.map((navbar) => {
+              //     return navbar.companyName;
+              //   });
+              // });
             })} 
           </Link>
           <button
@@ -120,6 +123,8 @@ export default function TempNavbar() {
               } else {
                 setCompanyName(document.getElementById("company-name").value);
                 updatenavbar(user._id);
+                console.log(user._id);
+    
                 setNavbarModalState(false);
               }
             }}

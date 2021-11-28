@@ -72,15 +72,15 @@ app.get("/read", async (req, res) => {
 //     );
 // });
 
-// app.get("/read/:id", function (req, res) {
-//   SignupModel.findById(req.params.id)
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// });
+app.get("/read/:id", function (req, res) {
+  SignupModel.findById(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 
 app.put("/update/:id", async (req, res) => {
@@ -92,6 +92,9 @@ app.put("/update/:id", async (req, res) => {
   const navTitle = req.body.navTitle;
   try {
     console.log(req.body.navTitle);
+    console.log(req.body.heroTitle);
+    console.log(req.body.herosubTitle);
+    
     await SignupModel.findByIdAndUpdate(req.body.id, {
       $set: {
         name: newName,
@@ -103,6 +106,10 @@ app.put("/update/:id", async (req, res) => {
         template: {
           navbar: {
             companyName: req.body.navTitle,
+          },
+          heroSection: {
+            heroTitle: req.body.heroTitle,
+            herosubTitle: req.body.herosubTitle,
           },
         },
       },

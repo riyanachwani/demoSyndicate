@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
   const [heroTitle, setHeroTitle] = useState("Welcome To syndicate");
   const [herosubTitle, setHeroSubTitle] = useState(
     "hey this is syndicate, we make your websites in no time"
   );
+  const [user, setUser] = useState([]);
+  const [userId, setUserId] = useState("");
+
 
   const customStyles = {
     overlay: {
@@ -23,12 +27,16 @@ export default function TempHero() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/hero", {
+  let updatenavbar = (id) => {
+    let userId = id;
+    Axios.put(`http://localhost:3001/update/${userId}`, {
+      id: userId,
       heroTitle: heroTitle,
-      herosubTitle: herosubTitle,
+      herosubTitle:herosubTitle,
     });
+    
   };
+
 
   return (
     <>
@@ -36,6 +44,11 @@ export default function TempHero() {
         class="px-4 py-5 my-5 text-center template-hover"
         onClick={() => setHeroModalState(true)}
       >
+         <Link class="navbar-brand text-dark fw-bolder" to="#/">
+            {user.map((users) => {
+              user._id=users._id;
+            })} 
+          </Link>
         {/* <img
             class="d-block mx-auto mb-4"
             src="/docs/5.1/assets/brand/bootstrap-logo.svg"
@@ -99,8 +112,7 @@ export default function TempHero() {
               } else {
                 setHeroTitle(document.getElementById("hero-title").value);
                 setHeroSubTitle(document.getElementById("hero-subtitle").value);
-
-                addToList();
+                updatenavbar(user._id);
                 setHeroModalState(false);
               }
             }}
