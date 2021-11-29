@@ -23,16 +23,14 @@ export default function TempAbout() {
     },
   };
 
-
-  
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
     Axios.put(
       `http://localhost:3001/update/${localStorage.getItem("userId")}`,
       {
         id: userId,
-        aboutTitle : aboutTitle,
-      aboutsubTitle:aboutsubTitle,
+        aboutTitle: aboutTitle,
+        aboutsubTitle: aboutsubTitle,
       }
     );
   };
@@ -104,11 +102,6 @@ export default function TempAbout() {
               if (!document.getElementById("about-title").value) {
                 alert("please enter something!");
               } else {
-                setAboutTitle(document.getElementById("about-title").value);
-                setAboutSubTitle(
-                  document.getElementById("about-subtitle").value
-                );
-
                 updatenavbar();
                 setAboutModalState(false);
               }

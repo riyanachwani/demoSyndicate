@@ -17,7 +17,7 @@ router.put("/update/:id", async (req, res) => {
   const aboutTitle =
     req.body.aboutTitle || filledData.template.aboutSection.aboutTitle;
   const aboutSubTitle =
-    req.body.aboutSubTitle || filledData.template.aboutSection.aboutSubTitle;
+    req.body.aboutsubTitle || filledData.template.aboutSection.aboutSubTitle;
   const servicesTitle =
     req.body.servicesTitle || filledData.template.serviceSection.servicesTitle;
   const servicesSubTitle =
@@ -45,6 +45,7 @@ router.put("/update/:id", async (req, res) => {
     req.body.linkedIn || filledData.template.footerSection.linkedIn;
 
   console.log(req.body);
+  console.log(filledData.template.aboutSection.aboutSubTitle);
   SignupModel.findByIdAndUpdate(req.body.id, {
     $set: {
       name: newName,
