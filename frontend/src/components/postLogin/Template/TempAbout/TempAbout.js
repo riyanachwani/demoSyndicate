@@ -38,9 +38,9 @@ export default function TempAbout() {
         aboutSection: {
           aboutTitle: response.data.template.aboutSection.aboutTitle,
           aboutSubTitle: response.data.template.aboutSection.aboutSubTitle,
-        },  
+        },
       });
-      });
+    });
   }, []);
 
   let updatenavbar = () => {
@@ -58,7 +58,7 @@ export default function TempAbout() {
   return (
     <>
       <div
-        class="px-4 py-5 my-5 text-center template-hover"
+        class="px-4 py-5 my-5 text-center template-hover "
         onClick={() => setAboutModalState(true)}
       >
         {/* <img
