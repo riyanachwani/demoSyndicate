@@ -10,6 +10,7 @@
     "bootstrap-icons": "^1.7.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.2",
+    "react-colorful": "^5.5.1",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
     "react-router-dom": "^6.0.2",

@@ -30,13 +30,6 @@ export default function UserProfile() {
               <div className="card-body">
                 <div className="text-center p-3">
                   <div className="user-profile">
-                    <div className="text-center">
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                        alt="Maxwell Admin"
-                        className="rounded-circle my-3 border w-50"
-                      />
-                    </div>
                     {List.map((val, key) => {
                       return (
                         <>

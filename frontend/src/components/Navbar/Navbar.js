@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavLogo from "../../assets/logo/logo.png";
 export default function Navbar() {
   const token = localStorage.getItem("token");
 
-  const logut = () => {
+  const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
@@ -31,31 +32,46 @@ export default function Navbar() {
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <Link class="nav-link" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to="/about">
-                    About
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to="/">
-                    Contact
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link class="nav-link" to="/">
-                    FAQ
+                    Hey Syndicate
                   </Link>
                 </li>
               </ul>
-              <button
-                className="btn gradient-1 text-light mx-2"
-                onClick={logut}
-              >
-                Logout
-              </button>
+
+              <div class="dropdown text-start">
+                <a
+                  href="#"
+                  class="d-block link-dark text-decoration-none dropdown-toggle "
+                  id="dropdownUser1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src={NavLogo}
+                    alt="mdo"
+                    width="32"
+                    height="32"
+                    class="rounded-circle"
+                  />
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdown">
+                  <li>
+                    <Link class="dropdown-item" to="/dashboard">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to="/userprofile">
+                      Profile
+                    </Link>
+                  </li>
+                  {/* <li><hr class="dropdown-divider"></li> */}
+                  <li>
+                    <a class="dropdown-item" href="#" onClick={logout}>
+                      Sign out
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
