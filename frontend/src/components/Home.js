@@ -9,14 +9,12 @@ export default function Home() {
             <div class="col-lg-8 col-xl-7 col-xxl-6">
               <div class="my-5 text-center text-xl-start">
                 <h1 class="display-5 fw-bolder text-dark mb-2">
-                  Bringing <span className="gradient-text-1">AI</span> closer to
-                  everyone !
+                  Get a <span className="gradient-text-1">Website</span> for
+                  your business in no time.
                 </h1>
                 <p class="lead fw-normal text-dark-50 mb-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-                  necessitatibus fuga reiciendis eaque cum incidunt commodi
-                  vitae pariatur explicabo inventore ratione perferendis,
-                  assumenda omnis, officia quia ex, minus quod voluptatibus?
+                  We provide business holders with an online platform where they
+                  can showcase their businesses in no time through Syndicate.
                 </p>
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                   <a

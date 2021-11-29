@@ -97,7 +97,7 @@ export default function Preview() {
             <nav class="navbar navbar-expand-lg text-dark mt-sm-0">
               <div class="container p-3">
                 <Link class="navbar-brand text-dark fw-bolder" to="#/">
-                  {userdata.name}
+                  {userdata.navbar.companyName}
                 </Link>
                 <button
                   class="navbar-toggler navbar-light text-light border-0 "
