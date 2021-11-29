@@ -26,11 +26,26 @@ export default function TempHero() {
     },
   };
 
+  const [userdata, setUserdata] = useState({
+    heroSection: {
+      heroTitle: "",
+      heroSubTitle: "",
+    },
+  });
+
   useEffect(() => {
-    Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
-      setUser(response.data);
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        heroSection: {
+          heroTitle: response.data.template.heroSection.heroTitle,
+          heroSubTitle: response.data.template.heroSection.heroSubTitle,
+        },
+      });
     });
   }, []);
+
 
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
@@ -67,9 +82,9 @@ export default function TempHero() {
             width="72"
             height="57"
           /> */}
-        <h1 class="display-5 fw-bold">{user.heroTitle}</h1>
+        <h1 class="display-5 fw-bold">{userdata.heroSection.heroTitle}</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">{user.heroSubTitle}</p>
+          <p class="lead mb-4">{userdata.heroSection.heroSubTitle}</p>
           {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                 Primary button

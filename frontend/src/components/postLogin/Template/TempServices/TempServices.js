@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
 
@@ -27,6 +27,39 @@ export default function TempServiecs() {
     },
   };
 
+  const [userdata, setUserdata] = useState({
+    serviceSection: {
+      serviceTitle: "",
+      serviceSubTitle: "",
+      service1Title: "",
+      service1Desc: "",
+      service2Title: "",
+      service2Desc: "",
+      service3Title: "",
+      service3Desc: "",
+    },
+  });
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        serviceSection: {
+          serviceTitle: response.data.template.serviceSection.servicesTitle,
+          serviceSubTitle:
+            response.data.template.serviceSection.servicesSubTitle,
+          service1Title: response.data.template.serviceSection.services1Title,
+          service1Desc: response.data.template.serviceSection.services1Desc,
+          service2Title: response.data.template.serviceSection.services2Title,
+          service2Desc: response.data.template.serviceSection.services2Desc,
+          service3Title: response.data.template.serviceSection.services3Title,
+          service3Desc: response.data.template.serviceSection.services3Desc,
+        },
+      });
+    });
+  }, []);
+
+
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
     Axios.put(
@@ -53,8 +86,8 @@ export default function TempServiecs() {
       >
         <div class="container px-5 my-5">
           <div className="title my-5">
-            <h1 class=" fw-bolder text-dark mb-2">{servicesTitle}</h1>
-            <h6>{servicesSubTitle}</h6>
+            <h1 class=" fw-bolder text-dark mb-2">{userdata.serviceSection.serviceTitle}</h1>
+            <h6>{userdata.serviceSection.serviceSubTitle}</h6>
           </div>
           <div class="row gx-5">
             <div class="col-12">
@@ -63,30 +96,27 @@ export default function TempServiecs() {
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-collection"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">{userdata.serviceSection.service1Title}</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                    {userdata.serviceSection.service1Desc}
                   </p>
                 </div>
                 <div class="col mb-5 h-100">
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-building"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">{userdata.serviceSection.service2Title}</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                    {userdata.serviceSection.service2Desc}
                   </p>
                 </div>
                 <div class="col mb-5 mb-md-0 h-100">
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-toggles2"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">{userdata.serviceSection.service3Title}</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                    {userdata.serviceSection.service3Desc}
                   </p>
                 </div>
               </div>

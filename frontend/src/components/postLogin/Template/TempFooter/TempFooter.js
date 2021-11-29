@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
 // import { Link } from "react-router-dom";
@@ -22,6 +22,36 @@ export default function TempFooter() {
       boxShadow: "0px 6px 20px #00000045",
     },
   };
+
+  const [userdata, setUserdata] = useState({
+    footerSection: {
+      companyName: "",
+      instagram: "",
+      twitter: "",
+      linkedIn: "",
+    },
+  });
+
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        footerSection: {
+          companyName: response.data.template.footerSection.companyName,
+          instagram:
+            "https://www.instagram.com/" +
+            response.data.template.footerSection.instagram,
+          twitter:
+            "https://www.twitter.com/" +
+            response.data.template.footerSection.twitter,
+          linkedIn:
+            "https://linkedin.com/company/" +
+            response.data.template.footerSection.linkedIn,
+        },
+      });
+    });
+  }, []);
 
 
   let updatenavbar = () => {
@@ -48,7 +78,7 @@ export default function TempFooter() {
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <div class="col-md-4 d-flex align-items-center">
             <span class="text-muted">
-              {companyName} &copy; 2021 Company, Inc
+              {userdata.footerSection.companyName} &copy; 2021 Company, Inc
             </span>
           </div>
 
@@ -56,7 +86,7 @@ export default function TempFooter() {
             <li class="ms-3">
               <a
                 class="text-muted"
-                href={instagram}
+                href={userdata.footerSection.instagram}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -67,7 +97,7 @@ export default function TempFooter() {
             <li class="ms-3">
               <a
                 class="text-muted"
-                href={twitter}
+                href={userdata.footerSection.twitter}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -78,7 +108,7 @@ export default function TempFooter() {
             <li class="ms-3">
               <a
                 class="text-muted"
-                href={linkedIn}
+                href={userdata.footerSection.linkedIn}
                 target="_blank"
                 rel="noreferrer"
               >

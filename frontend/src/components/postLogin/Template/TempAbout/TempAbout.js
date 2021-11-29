@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
 // import { Link } from "react-router-dom";
@@ -22,6 +22,26 @@ export default function TempAbout() {
       boxShadow: "0px 6px 20px #00000045",
     },
   };
+
+  const [userdata, setUserdata] = useState({
+    aboutSection: {
+      aboutTitle: "",
+      aboutSubTitle: "",
+    },
+  });
+
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        aboutSection: {
+          aboutTitle: response.data.template.aboutSection.aboutTitle,
+          aboutSubTitle: response.data.template.aboutSection.aboutSubTitle,
+        },  
+      });
+      });
+  }, []);
 
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
@@ -48,9 +68,9 @@ export default function TempAbout() {
             width="72"
             height="57"
           /> */}
-        <h1 class="display-5 fw-bold">{aboutTitle}</h1>
+        <h1 class="display-5 fw-bold">{userdata.aboutSection.aboutTitle}</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">{aboutsubTitle} </p>
+          <p class="lead mb-4">{userdata.aboutSection.aboutSubTitle} </p>
           {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                 Primary button

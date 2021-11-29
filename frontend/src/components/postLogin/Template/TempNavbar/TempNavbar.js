@@ -4,7 +4,13 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 export default function TempNavbar() {
   const [navbarModalRef, setNavbarModalState] = useState(false);
-  const [user, setUser] = useState([]);
+  const [userdata, setUserdata] = useState({
+    name: "",
+    navbar: {
+      companyName: "",
+    },
+  });
+  
   const [companyName, setCompanyName] = useState("");
   // const [userId, setUserId] = useState("");
   const customStyles = {
@@ -21,31 +27,16 @@ export default function TempNavbar() {
     },
   };
 
-  // const getUser = async () => {
-  //   localStorage.getItem("email");
-  //   Axios.get(`http://localhost:3001/user/${localStorage.getItem("email")}`, {
-  //     email: localStorage.getItem("email"),
-  //   })
-  //     .then((res) => {
-  //       localStorage.setItem("userId", res.data._id);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  const readUser = () => {
+  useEffect(() => {
     Axios.get(
       `http://localhost:3001/read/${localStorage.getItem("userId")}`
     ).then((response) => {
-      setUser(response.data);
-      console.log(response.data);
+      setUserdata({
+        navbar: {
+          companyName: response.data.template.navbar.companyName,
+        },
+      });
     });
-  };
-
-  useEffect(() => {
-    // getUser();
-    readUser();
   }, []);
 
   let updatenavbar = () => {
@@ -67,14 +58,7 @@ export default function TempNavbar() {
       >
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {/* {user.map((users) => {
-              user._id = users._id;
-              return users.template.map((template) => {
-                return template.navbar.map((navbar) => {
-                  user.companyName = navbar.companyName;
-                });
-              });
-            })} */}
+            {userdata.navbar.companyName}
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
