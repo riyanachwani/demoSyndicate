@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const token = localStorage.getItem("token");
+
+  const getUser = async () => {
+    console.log("token");
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
   if (!token) {
     window.location.href = "/";
   } else {
     // sessionStorage.setItem("userId", userId);
+    console.log(token);
 
     return (
       <>
@@ -24,7 +33,7 @@ export default function Dashboard() {
                           With supporting text below as a natural lead-in to
                           additional content.
                         </p>
-                        <Link to="/startinfo" class="btn btn-custom-1">
+                        <Link to="/template" class="btn btn-custom-1">
                           Edit
                         </Link>{" "}
                         {/* <Link to="/template" class="btn btn-custom-1">

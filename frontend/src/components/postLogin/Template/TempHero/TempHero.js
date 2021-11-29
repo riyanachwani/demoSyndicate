@@ -12,7 +12,6 @@ export default function TempHero() {
   const [user, setUser] = useState([]);
   const [userId, setUserId] = useState("");
 
-
   const customStyles = {
     overlay: {
       backgroundColor: "var(--color-purple-700)",
@@ -27,39 +26,40 @@ export default function TempHero() {
     },
   };
 
-
   useEffect(() => {
     Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
-
-  let updatenavbar = (id) => {
-    let userId = id;
-    Axios.put(`http://localhost:3001/update/${userId}`, {
-      id: userId,
-      heroTitle: heroTitle,
-      herosubTitle:herosubTitle,
-    });
-    
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        heroTitle: heroTitle,
+        herosubTitle: herosubTitle,
+      }
+    );
   };
-
 
   return (
     <>
       <div
         class="px-4 py-5 my-5 text-center template-hover"
         onClick={() => setHeroModalState(true)}
-      >   {user.map((users) => {
-              user._id=users._id;
-              return users.template.map((template) => {
-                return template.heroSection.map((heroSection) => {
-                  user.heroTitle=heroSection.heroTitle;
-                  user.herosubTitle=heroSection.herosubTitle;
-                });
-              });
-            })} 
+      >
+        {" "}
+        {user.map((users) => {
+          user._id = users._id;
+          return users.template.map((template) => {
+            return template.heroSection.map((heroSection) => {
+              user.heroTitle = heroSection.heroTitle;
+              user.herosubTitle = heroSection.herosubTitle;
+            });
+          });
+        })}
         {/* <img
             class="d-block mx-auto mb-4"
             src="/docs/5.1/assets/brand/bootstrap-logo.svg"
@@ -124,7 +124,7 @@ export default function TempHero() {
                 setHeroTitle(document.getElementById("hero-title").value);
                 setHeroSubTitle(document.getElementById("hero-subtitle").value);
                 console.log(user.heroTitle);
-                updatenavbar(user._id);
+                updatenavbar();
                 setHeroModalState(false);
               }
             }}

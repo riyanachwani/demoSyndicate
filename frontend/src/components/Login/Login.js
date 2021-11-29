@@ -21,6 +21,7 @@ export default function Login() {
     });
     if (response) {
       localStorage.setItem("token", response.data);
+      localStorage.setItem("email", email);
       alert("Login Successful");
       window.location.href = "/dashboard";
     } else {

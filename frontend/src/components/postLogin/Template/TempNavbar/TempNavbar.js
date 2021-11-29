@@ -21,21 +21,42 @@ export default function TempNavbar() {
     },
   };
 
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/read/${userId}`).then((response) => {
-      setUser(response.data);
-    });
-  }, []);
-
-  let updatenavbar = (id) => {
-    let userId = id;
-    Axios.put(`http://localhost:3001/update/${userId}`, {
-      id: userId,
-      navTitle: companyName,
-    });
-    
+  const getUser = async () => {
+    localStorage.getItem("email");
+    Axios.get(`http://localhost:3001/user/${localStorage.getItem("email")}`, {
+      email: localStorage.getItem("email"),
+    })
+      .then((res) => {
+        localStorage.setItem("userId", res.data._id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  const readUser = () => {
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUser(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getUser();
+    readUser();
+  }, []);
+
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        navTitle: companyName,
+      }
+    );
+  };
 
   return (
     <>
@@ -45,15 +66,14 @@ export default function TempNavbar() {
       >
         <div class="container p-3">
           <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {user.map((users) => {
-              user._id=users._id;
+            {/* {user.map((users) => {
+              user._id = users._id;
               return users.template.map((template) => {
                 return template.navbar.map((navbar) => {
-                  user.companyName=navbar.companyName;
+                  user.companyName = navbar.companyName;
                 });
               });
-            })}
-            {user.companyName}
+            })} */}
           </Link>
           <button
             class="navbar-toggler navbar-light text-light border-0 "
@@ -114,8 +134,7 @@ export default function TempNavbar() {
                 alert("please enter something!");
               } else {
                 setCompanyName(document.getElementById("company-name").value);
-                updatenavbar(user._id);
-                console.log(user._id);
+                updatenavbar();
                 setNavbarModalState(false);
               }
             }}
