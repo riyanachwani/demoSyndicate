@@ -5,14 +5,6 @@ const navbarSchema ={
     type: String,
     required: true,
   },
-  about: {
-    type: String,
-    required: true,
-  },
-  services: {
-    type: String,
-    required: true,
-  },
 };
 
 const heroSectionSchema ={
@@ -31,14 +23,14 @@ const aboutSectionSchema = {
     type: String,
     required: true,
   },
-  aboutContent: {
+  aboutsubTitle: {
     type: String,
     required: true,
   },
 };
 
 const footerSectionSchema = {
-  footerTitle: {
+  companyName: {
     type: String,
     required: true,
   },
@@ -57,35 +49,35 @@ const footerSectionSchema = {
 };
 
 const serviceSectionSchema ={
-  serviceTitle: {
+  servicesTitle: {
     type: String,
     required: true,
   },
-  serviceSubTitle: {
+  servicesSubTitle: {
     type: String,
     required: true,
   },
-  serviceContent1Title: {
+  services1Title: {
     type: String,
     required: true,
   },
-  serviceContent1Desc: {
+  services1Desc: {
     type: String,
     required: true,
   },
-  serviceContent2Title: {
+  services2Title: {
     type: String,
     required: true,
   },
-  serviceContent2Desc: {
+  services2Desc: {
     type: String,
     required: true,
   },
-  serviceContent3Title: {
+  services3Title: {
     type: String,
     required: true,
   },
-  serviceContent3Desc: {
+  services3Desc: {
     type: String,
     required: true,
   },

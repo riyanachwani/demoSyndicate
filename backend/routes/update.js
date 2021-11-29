@@ -14,7 +14,22 @@ router.put("/update/:id", async (req, res) => {
   const newLocation = req.body.newLocation || filledData.location;
   const navTitle = req.body.navTitle || filledData.template.navbar.companyName;
   const heroTitle = req.body.heroTitle || filledData.template.heroSection.heroTitle;
-  const heroSubTitle = req.body.heroSubTitle || filledData.heroSubTitle;
+  const heroSubTitle = req.body.heroSubTitle || filledData.template.heroSection.heroSubTitle;
+  const aboutTitle = req.body.aboutTitle || filledData.template.aboutSection.aboutTitle;
+  const aboutsubTitle = req.body.aboutsubTitle || filledData.template.aboutSection.aboutsubTitle;
+  const servicesTitle = req.body.servicesTitle || filledData.template.serviceSection.servicesTitle;
+  const servicesSubTitle = req.body.servicesSubTitle || filledData.template.serviceSection.servicesSubTitle;
+  const services1Title = req.body.services1Title || filledData.template.serviceSection.services1Title;
+  const services1Desc = req.body.services1Desc || filledData.template.serviceSection.services1Desc;
+  const services2Title = req.body.services2Title || filledData.template.serviceSection.services2Title;
+  const services2Desc = req.body.services2Desc || filledData.template.serviceSection.services2Desc;
+  const services3Title = req.body.services3Title || filledData.template.serviceSection.services3Title;
+  const services3Desc = req.body.services3Desc || filledData.template.serviceSection.services3Desc;
+  const companyName = req.body.companyName || filledData.template.footerSection.companyName;
+  const instagram = req.body.instagram || filledData.template.footerSection.instagram;
+  const twitter = req.body.twitter || filledData.template.footerSection.twitter;
+  const linkedIn = req.body.linkedIn || filledData.template.footerSection.linkedIn;
+
 
   console.log(req.body);
   SignupModel.findOneAndUpdate(req.body.id, {
@@ -31,7 +46,28 @@ router.put("/update/:id", async (req, res) => {
           heroTitle: heroTitle,
           heroSubTitle: heroSubTitle,
         },
+        aboutSection: {
+          aboutTitle: aboutTitle,
+          aboutsubTitle: aboutsubTitle,
+        },
+        serviceSection: {
+          servicesTitle: servicesTitle,
+          servicesSubTitle: servicesSubTitle,
+          services1Title: services1Title,
+          services1Desc: services1Desc,
+          services2Title: services2Title,
+          services2Desc: services2Desc,
+          services3Title: services3Title,
+          services3Desc: services3Desc,
+        },
+        footerSection: {
+          companyName: companyName,
+          instagram: instagram,
+          twitter: twitter,
+          linkedIn: linkedIn,
+        },
       },
+
     },
   })
     .then((data) => {

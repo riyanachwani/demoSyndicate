@@ -28,17 +28,23 @@ export default function TempServiecs() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/services", {
-      servicesTitle: servicesTitle,
-      servicesSubTitle: servicesSubTitle,
-      services1Title: services1Title,
-      services1Desc: services1Desc,
-      services2Title: services2Title,
-      services2Desc: services2Desc,
-      services3Title: services3Title,
-      services3Desc: services3Desc,
-    });
+
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        servicesTitle: servicesTitle,
+        servicesSubTitle: servicesSubTitle,
+        services1Title: services1Title,
+        services1Desc: services1Desc,
+        services2Title: services2Title,
+        services2Desc: services2Desc,
+        services3Title: services3Title,
+        services3Desc: services3Desc,
+      }
+    );
   };
 
   return (
@@ -199,9 +205,8 @@ export default function TempServiecs() {
                 setServicesSubTitle(
                   document.getElementById("services-subtitle").value
                 );
-                
-                addToList();
 
+                updatenavbar();
                 setServicesModalState(false);
               }
             }}
