@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
+
 // import { Link } from "react-router-dom";
 export default function TempServiecs() {
   const [servicesModalRef, setServicesModalState] = useState(false);
-  const [servicesTitle, setServicesTitle] = useState("OUr Services");
-  const [servicesSubTitle, setServicesSubTitle] = useState(
-    "these are the services we offer"
-  );
+  const [servicesTitle, setServicesTitle] = useState("");
+  const [servicesSubTitle, setServicesSubTitle] = useState("");
   const [services1Title, setServices1Title] = useState("");
   const [services1Desc, setServices1Desc] = useState("");
   const [services2Title, setServices2Title] = useState("");
@@ -28,17 +27,22 @@ export default function TempServiecs() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/services", {
-      servicesTitle: servicesTitle,
-      servicesSubTitle: servicesSubTitle,
-      services1Title: services1Title,
-      services1Desc: services1Desc,
-      services2Title: services2Title,
-      services2Desc: services2Desc,
-      services3Title: services3Title,
-      services3Desc: services3Desc,
-    });
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        servicesTitle: servicesTitle,
+        servicesSubTitle: servicesSubTitle,
+        services1Title: services1Title,
+        services1Desc: services1Desc,
+        services2Title: services2Title,
+        services2Desc: services2Desc,
+        services3Title: services3Title,
+        services3Desc: services3Desc,
+      }
+    );
   };
 
   return (
@@ -193,15 +197,8 @@ export default function TempServiecs() {
               if (!document.getElementById("services-title").value) {
                 alert("please enter something!");
               } else {
-                setServicesTitle(
-                  document.getElementById("services-title").value
-                );
-                setServicesSubTitle(
-                  document.getElementById("services-subtitle").value
-                );
-                
-                addToList();
-
+                console.log(servicesTitle);
+                updatenavbar();
                 setServicesModalState(false);
               }
             }}

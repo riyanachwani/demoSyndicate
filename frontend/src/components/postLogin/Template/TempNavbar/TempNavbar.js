@@ -6,7 +6,7 @@ export default function TempNavbar() {
   const [navbarModalRef, setNavbarModalState] = useState(false);
   const [user, setUser] = useState([]);
   const [companyName, setCompanyName] = useState("");
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const customStyles = {
     overlay: {
       backgroundColor: "var(--color-purple-700)",
@@ -134,7 +134,6 @@ export default function TempNavbar() {
               if (!document.getElementById("company-name").value) {
                 alert("please enter something!");
               } else {
-                setCompanyName(document.getElementById("company-name").value);
                 updatenavbar();
                 setNavbarModalState(false);
               }

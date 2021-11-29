@@ -23,11 +23,18 @@ export default function TempAbout() {
     },
   };
 
-  const addToList = () => {
-    Axios.post("http://localhost:3001/about", {
-      aboutTitle: aboutTitle,
+
+  
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        aboutTitle : aboutTitle,
       aboutsubTitle:aboutsubTitle,
-    });
+      }
+    );
   };
 
   return (
@@ -102,7 +109,7 @@ export default function TempAbout() {
                   document.getElementById("about-subtitle").value
                 );
 
-                addToList();
+                updatenavbar();
                 setAboutModalState(false);
               }
             }}

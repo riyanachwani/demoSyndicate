@@ -121,9 +121,6 @@ export default function TempHero() {
               if (!document.getElementById("hero-title").value) {
                 alert("please enter something!");
               } else {
-                setHeroTitle(document.getElementById("hero-title").value);
-                setHeroSubTitle(document.getElementById("hero-subtitle").value);
-                console.log(user.heroTitle);
                 updatenavbar();
                 setHeroModalState(false);
               }

@@ -18,41 +18,38 @@ router.post("/signup", async (req, res) => {
     name: name,
     email: email,
     password: password,
-    confirmPassword: confirmPassword,
     location: location,
     template: {
       navbar: {
         companyName: "Syndicate",
-        about: "Abouttitle",
-        services: "serviceTitle",
       },
 
       heroSection: {
         heroTitle: "heroTitle",
-        heroSubTitle: "heroContent",
+        heroSubTitle: "heroSubTitle",
       },
 
       aboutSection: {
         aboutTitle: "aboutTitle",
-        aboutContent: "aboutContent",
+        aboutSubTitle: "aboutSubTitle",
       },
 
       serviceSection: {
-        serviceTitle: "serviceTitle",
-        serviceSubTitle: "serviceSubTitle",
+        servicesTitle: "servicesTitle",
+        servicesSubTitle: "servicesSubTitle",
 
-        serviceContent1Title: "serviceContent1Title",
-        serviceContent1Desc: "serviceContent1Desc",
+        services1Title: "services1Title",
+        services1Desc: "services1Desc",
 
-        serviceContent2Title: "serviceContent2Title",
-        serviceContent2Desc: "serviceContent2Desc",
+        services2Title: "services2Title",
+        services2Desc: "services2Desc",
 
-        serviceContent3Title: "serviceContent3Title",
-        serviceContent3Desc: "serviceContent3Desc",
+        services3Title: "services3Title",
+        services3Desc: "services3Desc",
       },
 
       footerSection: {
-        footerTitle: "footerTitle",
+        companyName: "footerTitle",
         instagram: "instagram",
         twitter: "twitter",
         linkedIn: "linkedIn",

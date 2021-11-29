@@ -23,14 +23,21 @@ export default function TempFooter() {
     },
   };
 
-   const addToList = () => {
-     Axios.post("http://localhost:3001/footer", {
-       companyName: companyName,
-       instagram: instagram,
-       twitter: twitter,
-       linkedIn: linkedIn,
-     });
-   };
+
+  let updatenavbar = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        companyName: companyName,
+        instagram: instagram,
+        twitter: twitter,
+        linkedIn: linkedIn,
+      }
+    );
+  };
+
 
   return (
     <>
@@ -144,17 +151,17 @@ export default function TempFooter() {
                 setCompanyName(document.getElementById("compnay-name").value);
                 setInstagram(
                   "https://instagram.com/" +
-                    document.getElementById("insta").value
+                  document.getElementById("insta").value
                 );
                 setTwitter(
                   "https://twitter.com/" +
-                    document.getElementById("twitter").value
+                  document.getElementById("twitter").value
                 );
                 setLinkedIn(
                   "https://linkedIn.com/in/" +
-                    document.getElementById("linkedin").value
+                  document.getElementById("linkedin").value
                 );
-                addToList();
+                updatenavbar();
 
                 setFooterModalState(false);
               }
