@@ -63,11 +63,18 @@ export default function Preview() {
         },
         footerSection: {
           companyName: response.data.template.footerSection.companyName,
-          instagram: response.data.template.footerSection.instagram,
-          twitter: response.data.template.footerSection.twitter,
-          linkedIn: response.data.template.footerSection.linkedIn,
+          instagram:
+            "https://www.instagram.com/" +
+            response.data.template.footerSection.instagram,
+          twitter:
+            "https://www.twitter.com/" +
+            response.data.template.footerSection.twitter,
+          linkedIn:
+            "https://linkedin.com/company/" +
+            response.data.template.footerSection.linkedIn,
         },
       });
+      console.log(userdata.heroSection.heroTitle);
     });
   }, []);
 
@@ -131,8 +138,10 @@ export default function Preview() {
             {/* TempHero */}
             <div class="px-4 py-5 my-5 text-center">
               {" "}
-              <h1 class="display-5 fw-bold">{userdata.navbar.companyName}</h1>
-              <div class="col-lg-6 mx-auto">
+              <div class="col-lg-8 mx-auto">
+                <h1 class="display-5 fw-bold">
+                  {userdata.heroSection.heroTitle}
+                </h1>
                 <p class="lead mb-4"> {userdata.heroSection.heroSubTitle}</p>
               </div>
             </div>
@@ -197,7 +206,7 @@ export default function Preview() {
                         </div>
                         <h2 class="h5">
                           {" "}
-                          {userdata.serviceSection.service3Title}
+                          {userdata.serviceSection.service2Title}
                         </h2>
                         <p class="mb-0">
                           {userdata.serviceSection.service2Desc}
@@ -234,7 +243,7 @@ export default function Preview() {
                   <li class="ms-3">
                     <a
                       class="text-muted"
-                      href={userdata.instagram}
+                      href={userdata.footerSection.instagram}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -245,23 +254,23 @@ export default function Preview() {
                   <li class="ms-3">
                     <a
                       class="text-muted"
-                      href={userdata.twitter}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {" "}
-                      <i class="fab fa-facebook fs-3"></i>
-                    </a>
-                  </li>
-                  <li class="ms-3">
-                    <a
-                      class="text-muted"
-                      href={userdata.linkedIn}
+                      href={userdata.footerSection.twitter}
                       target="_blank"
                       rel="noreferrer"
                     >
                       {" "}
                       <i class="fab fa-twitter fs-3"></i>
+                    </a>
+                  </li>
+                  <li class="ms-3">
+                    <a
+                      class="text-muted"
+                      href={userdata.footerSection.linkedIn}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {" "}
+                      <i class="fab fa-linkedin fs-3"></i>
                     </a>
                   </li>
                 </ul>
