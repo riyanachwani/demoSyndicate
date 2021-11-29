@@ -21,18 +21,18 @@ export default function TempNavbar() {
     },
   };
 
-  const getUser = async () => {
-    localStorage.getItem("email");
-    Axios.get(`http://localhost:3001/user/${localStorage.getItem("email")}`, {
-      email: localStorage.getItem("email"),
-    })
-      .then((res) => {
-        localStorage.setItem("userId", res.data._id);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getUser = async () => {
+  //   localStorage.getItem("email");
+  //   Axios.get(`http://localhost:3001/user/${localStorage.getItem("email")}`, {
+  //     email: localStorage.getItem("email"),
+  //   })
+  //     .then((res) => {
+  //       localStorage.setItem("userId", res.data._id);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const readUser = () => {
     Axios.get(
@@ -44,7 +44,7 @@ export default function TempNavbar() {
   };
 
   useEffect(() => {
-    getUser();
+    // getUser();
     readUser();
   }, []);
 

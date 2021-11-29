@@ -6,13 +6,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const addToList = () => {
-  //   Axios.post("http://localhost:3001/api/login", {
-  //     email: email,
-  //     password: password,
-  //   });
-  // };
-
   const loginUser = async (event) => {
     event.preventDefault();
     const response = await Axios.post("http://localhost:3001/api/login", {
@@ -20,8 +13,10 @@ export default function Login() {
       password: password,
     });
     if (response) {
-      localStorage.setItem("token", response.data);
-      localStorage.setItem("email", email);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userId", response.data.userId);
+      console.log(response);
+      // localStorage.setItem("id", response_id);
       alert("Login Successful");
       window.location.href = "/dashboard";
     } else {

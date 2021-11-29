@@ -29,7 +29,7 @@ router.post("/signup", async (req, res) => {
 
       heroSection: {
         heroTitle: "heroTitle",
-        heroContent: "heroContent",
+        heroSubTitle: "heroContent",
       },
 
       aboutSection: {

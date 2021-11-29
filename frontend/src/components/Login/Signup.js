@@ -35,38 +35,6 @@ export default function Signup() {
     });
   }, []);
 
-  // const updateList = (id) => {
-  //   Axios.put("http://localhost:3001/update", {
-  //     id: id,
-  //     newName: newName,
-  //   });
-  // };
-
-  // const deleteList = (id) => {
-  //   Axios.delete(`http://localhost:3001/delete/${id}`);
-  // };
-
-  /*
-  const logindata = () => {
-    return (
-      <>
-        {List.map((val, id) => {
-          return (
-            <>
-              <input
-                value={newName}
-                onChange={(event) => {
-                  setNewName(event.target.value);
-                }}
-              />
-            </>
-          );
-        })}
-      </>
-    );
-  };
-*/
-
   return (
     <>
       <section class="py-5 my-5">

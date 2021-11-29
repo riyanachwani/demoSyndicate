@@ -20,7 +20,8 @@ router.post("/api/login", async (req, res) => {
         "syndicate-system-123 "
       );
 
-      res.header("auth-token", token).send(token);
+      res.header("auth-token", token).send({token : token , userId : user._id});
+    
       // sends cookie with sessionID automatically in response
     }
   });
