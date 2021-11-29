@@ -1,17 +1,47 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 
 export default function UserProfile() {
-  const [List, setList] = useState([]);
+  
+  const [userdata, setUserdata] = useState({
+    id:"",
+    name: "",
+    email: "",
+    password: "",
+    location: "",
+    aboutSection: {
+      aboutTitle: "",
+      aboutSubTitle: "",
+    },
+  });
   useEffect(() => {
-    Axios.get("http://localhost:3001/read/").then((response) => {
-      setList(response.data);
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        name: response.data.name,
+        email:response.data.email,
+        password: response.data.password,
+        location:response.data.location,
+        aboutSection: {
+          aboutTitle: response.data.template.aboutSection.aboutTitle,
+          aboutSubTitle: response.data.template.aboutSection.aboutSubTitle,
+        },
+      });
     });
   }, []);
 
+  
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
   const deleteList = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`);
+    Axios.delete(`http://localhost:3001/delete/${localStorage.getItem("userId")}`);
+    logout();
   };
 
   /*
@@ -22,7 +52,6 @@ export default function UserProfile() {
       };
 */
   return (
-    <form>
       <div className="container my-5 py-5">
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12 my-3">
@@ -30,23 +59,16 @@ export default function UserProfile() {
               <div className="card-body">
                 <div className="text-center p-3">
                   <div className="user-profile">
-                    {List.map((val, key) => {
-                      return (
-                        <>
-                          <div key={key} className="signup">
+                          <div className="signup">
                             {" "}
                           </div>
-                          <h5 className="user-name">{val.name}</h5>
-                          <p className="user-email">{val.email}</p>
-                        </>
-                      );
-                    })}
-                  </div>
+                          <h5 className="user-name">{userdata.name}</h5>
+                          <p className="user-email">{userdata.email}</p>
+                    </div>
                   <div className="about">
                     <h5>About</h5>
                     <p>
-                      I'm william. Full Stack Designer I enjoy creating
-                      user-centric, delightful and human experiences.
+                      {userdata.aboutSection.aboutSubTitle}
                     </p>
                   </div>
                 </div>
@@ -62,10 +84,7 @@ export default function UserProfile() {
                   </div>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="mb-3">
-                      {List.map((val, key) => {
-                        return (
-                          <>
-                            <label
+                         <label
                               HTMLfor="exampleFormControlInput1"
                               className="form-label"
                             >
@@ -75,11 +94,8 @@ export default function UserProfile() {
                               type="text"
                               className="form-control"
                               id="exampleFormControlInput1"
-                              value={val.name}
+                              value={userdata.name}
                             />
-                          </>
-                        );
-                      })}
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -91,18 +107,12 @@ export default function UserProfile() {
                         >
                           Email address
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="email"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                value={val.email}
+                                value={userdata.email}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -115,18 +125,12 @@ export default function UserProfile() {
                         >
                           Password
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="password"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                value={val.password}
+                                value={userdata.password}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -141,18 +145,12 @@ export default function UserProfile() {
                         >
                           Location
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="text"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                value={val.location}
+                                value={userdata.location}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -160,29 +158,18 @@ export default function UserProfile() {
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="d-flex mt-5 justify-content-end">
-                      {List.map((val, key) => {
-                        return (
-                          <>
                             <button
-                              type="submit"
-                              id="submit"
+                              type="button"
+                              id="button"
                               name="submit"
                               className="btn btn-outline-dark me-2"
-                              onClick={() => deleteList(val._id)}
+                              onClick={() => deleteList(userdata._id)}
                             >
                               Delete Account
                             </button>
-                            <button
-                              type="submit"
-                              id="submit"
-                              name="submit"
-                              className="btn btn-custom-1 mx-2"
-                            >
+                            <Link to="/UserUpdate" class="btn btn-custom-1" type="button">
                               Update
-                            </button>
-                          </>
-                        );
-                      })}
+                            </Link>
                     </div>
                   </div>
                 </div>
@@ -191,6 +178,5 @@ export default function UserProfile() {
           </div>
         </div>
       </div>
-    </form>
   );
 }
