@@ -39,6 +39,7 @@ export default function TempNavbar() {
       `http://localhost:3001/read/${localStorage.getItem("userId")}`
     ).then((response) => {
       setUser(response.data);
+      console.log(response.data);
     });
   };
 

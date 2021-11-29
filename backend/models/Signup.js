@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const navbarSchema = mongoose.Schema({
+const navbarSchema ={
   companyName: {
     type: String,
     required: true,
@@ -13,20 +13,20 @@ const navbarSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-});
+};
 
-const heroSectionSchema = mongoose.Schema({
+const heroSectionSchema ={
   heroTitle: {
     type: String,
     required: true,
   },
-  heroContent: {
+  heroSubTitle: {
     type: String,
     required: true,
   },
-});
+};
 
-const aboutSectionSchema = mongoose.Schema({
+const aboutSectionSchema = {
   aboutTitle: {
     type: String,
     required: true,
@@ -35,9 +35,9 @@ const aboutSectionSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-});
+};
 
-const footerSectionSchema = mongoose.Schema({
+const footerSectionSchema = {
   footerTitle: {
     type: String,
     required: true,
@@ -54,9 +54,9 @@ const footerSectionSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-});
+};
 
-const serviceSectionSchema = mongoose.Schema({
+const serviceSectionSchema ={
   serviceTitle: {
     type: String,
     required: true,
@@ -89,15 +89,15 @@ const serviceSectionSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-});
+};
 
-const templateSchema = mongoose.Schema({
-  navbar: [navbarSchema],
-  heroSection: [heroSectionSchema],
-  aboutSection: [aboutSectionSchema],
-  serviceSection: [serviceSectionSchema],
-  footerSection: [footerSectionSchema],
-});
+const templateSchema = {
+  navbar: navbarSchema,
+  heroSection: heroSectionSchema,
+  aboutSection: aboutSectionSchema,
+  serviceSection: serviceSectionSchema,
+  footerSection: footerSectionSchema,
+};
 
 const SignupSchema = new mongoose.Schema({
   name: {
@@ -121,7 +121,7 @@ const SignupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  template: [templateSchema],
+  template: templateSchema,
 });
 
 //Pass it to mongoose

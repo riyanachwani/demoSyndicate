@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
   const [heroTitle, setHeroTitle] = useState("Welcome To syndicate");
-  const [herosubTitle, setHeroSubTitle] = useState(
+  const [heroSubTitle, setHeroSubTitle] = useState(
     "hey this is syndicate, we make your websites in no time"
   );
   const [user, setUser] = useState([]);
@@ -39,7 +39,7 @@ export default function TempHero() {
       {
         id: userId,
         heroTitle: heroTitle,
-        herosubTitle: herosubTitle,
+        heroSubTitle: heroSubTitle,
       }
     );
   };
@@ -51,7 +51,7 @@ export default function TempHero() {
         onClick={() => setHeroModalState(true)}
       >
         {" "}
-        {user.map((users) => {
+        {/* {user.map((users) => {
           user._id = users._id;
           return users.template.map((template) => {
             return template.heroSection.map((heroSection) => {
@@ -59,7 +59,7 @@ export default function TempHero() {
               user.herosubTitle = heroSection.herosubTitle;
             });
           });
-        })}
+        })} */}
         {/* <img
             class="d-block mx-auto mb-4"
             src="/docs/5.1/assets/brand/bootstrap-logo.svg"
@@ -69,7 +69,7 @@ export default function TempHero() {
           /> */}
         <h1 class="display-5 fw-bold">{user.heroTitle}</h1>
         <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4">{user.herosubTitle}</p>
+          <p class="lead mb-4">{user.heroSubTitle}</p>
           {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                 Primary button

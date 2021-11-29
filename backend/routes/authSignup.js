@@ -20,55 +20,44 @@ router.post("/signup", async (req, res) => {
     password: password,
     confirmPassword: confirmPassword,
     location: location,
-    template: [
-      {
-        navbar: [
-          {
-            companyName: "Syndicate",
-            about: "Abouttitle",
-            services: "serviceTitle",
-          },
-        ],
-
-        heroSection: [
-          {
-            heroTitle: "heroTitle",
-            heroContent: "heroContent",
-          },
-        ],
-
-        aboutSection: [
-          {
-            aboutTitle: "aboutTitle",
-            aboutContent: "aboutContent",
-          },
-        ],
-
-        serviceSection: [
-          {
-            serviceTitle: "serviceTitle",
-            serviceSubTitle: "serviceSubTitle",
-
-            serviceContent1Title: "serviceContent1Title",
-            serviceContent1Desc: "serviceContent1Desc",
-
-            serviceContent2Title: "serviceContent2Title",
-            serviceContent2Desc: "serviceContent2Desc",
-
-            serviceContent3Title: "serviceContent3Title",
-            serviceContent3Desc: "serviceContent3Desc",
-          },
-        ],
-        footerSection: [
-          {
-            footerTitle: "footerTitle",
-            instagram: "instagram",
-            twitter: "twitter",
-            linkedIn: "linkedIn",
-          },
-        ],
+    template: {
+      navbar: {
+        companyName: "Syndicate",
+        about: "Abouttitle",
+        services: "serviceTitle",
       },
-    ],
+
+      heroSection: {
+        heroTitle: "heroTitle",
+        heroContent: "heroContent",
+      },
+
+      aboutSection: {
+        aboutTitle: "aboutTitle",
+        aboutContent: "aboutContent",
+      },
+
+      serviceSection: {
+        serviceTitle: "serviceTitle",
+        serviceSubTitle: "serviceSubTitle",
+
+        serviceContent1Title: "serviceContent1Title",
+        serviceContent1Desc: "serviceContent1Desc",
+
+        serviceContent2Title: "serviceContent2Title",
+        serviceContent2Desc: "serviceContent2Desc",
+
+        serviceContent3Title: "serviceContent3Title",
+        serviceContent3Desc: "serviceContent3Desc",
+      },
+
+      footerSection: {
+        footerTitle: "footerTitle",
+        instagram: "instagram",
+        twitter: "twitter",
+        linkedIn: "linkedIn",
+      },
+    },
   });
 
   try {
@@ -76,7 +65,7 @@ router.post("/signup", async (req, res) => {
     res.send("Inserted");
     console.log("insetred");
   } catch (err) {
-    console.log("Duplicate emails");
+    console.log(err);
   }
 });
 
