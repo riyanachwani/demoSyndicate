@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 
 export default function UserProfile() {
@@ -8,20 +9,50 @@ export default function UserProfile() {
   const [newPassword, setNewPassword] = useState("");
   const [newLocation, setNewLocation] = useState("");
   const [List, setList] = useState([]);
+  
+  const [userdata, setUserdata] = useState({
+    id:"",
+    name: "",
+    email: "",
+    password: "",
+    location: "",
+    aboutSection: {
+      aboutTitle: "",
+      aboutSubTitle: "",
+    },
+  });
+
   useEffect(() => {
-    Axios.get("http://localhost:3001/read").then((response) => {
-      setList(response.data);
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        name: response.data.name,
+        email:response.data.email,
+        password: response.data.password,
+        location:response.data.location,
+        aboutSection: {
+          aboutTitle: response.data.template.aboutSection.aboutTitle,
+          aboutSubTitle: response.data.template.aboutSection.aboutSubTitle,
+        },
+      });
     });
   }, []);
 
-  const updateList = (id) => {
-    Axios.put("http://localhost:3001/userupdate", {
-      id: id,
-      newName: newName,
-      newEmail: newEmail,
-      newPassword: newPassword,
-      newLocation: newLocation,
-    });
+
+  let update = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        newName:newName,
+        newEmail:newEmail,
+        newPassword:newPassword,
+        newLocation:newLocation,
+      }
+    );
+    console.log(newName);
   };
 
   return (
@@ -33,32 +64,18 @@ export default function UserProfile() {
               <div className="card-body">
                 <div className="text-center p-3">
                   <div className="user-profile">
-                    <div className="text-center">
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                        alt="Maxwell Admin"
-                        className="rounded-circle my-3 border w-50"
-                      />
-                    </div>
-                    {List.map((val, key) => {
-                      return (
-                        <>
-                          <div key={key} className="signup">
+                          <div className="signup">
                             {" "}
                           </div>
-                          <h5 className="user-name">{val.name}</h5>
-                          <p className="user-email">{val.email}</p>
-                        </>
-                      );
-                    })}
+                          <h5 className="user-name">{userdata.name}</h5>
+                          <p className="user-email">{userdata.email}</p>
                   </div>
                   <div className="about">
-                    <h5>About</h5>
+                  <h5>About</h5>
                     <p>
-                      I'm william. Full Stack Designer I enjoy creating
-                      user-centric, delightful and human experiences.
+                      {userdata.aboutSection.aboutSubTitle}
                     </p>
-                  </div>
+                   </div>
                 </div>
               </div>
             </div>
@@ -72,9 +89,6 @@ export default function UserProfile() {
                   </div>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="mb-3">
-                      {List.map((val, key) => {
-                        return (
-                          <>
                             <label
                               HTMLfor="exampleFormControlInput1"
                               className="form-label"
@@ -85,14 +99,11 @@ export default function UserProfile() {
                               type="text"
                               className="form-control"
                               id="exampleFormControlInput1"
-                              // value={val.name}
+                              placeholder={userdata.name}
                               onChange={(event) => {
                                 setNewName(event.target.value);
                               }}
                             />
-                          </>
-                        );
-                      })}
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -104,21 +115,15 @@ export default function UserProfile() {
                         >
                           Email address
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="email"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                placeholder={val.email}
+                                placeholder={userdata.email}
                                 onChange={(event) => {
                                   setNewEmail(event.target.value);
                                 }}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -131,21 +136,15 @@ export default function UserProfile() {
                         >
                           Password
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="password"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                placeholder={val.password}
+                                placeholder={userdata.password}
                                 onChange={(event) => {
                                   setNewPassword(event.target.value);
                                 }}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -160,21 +159,15 @@ export default function UserProfile() {
                         >
                           Location
                         </label>
-                        {List.map((val, key) => {
-                          return (
-                            <>
                               <input
                                 type="text"
                                 className="form-control"
                                 id="exampleFormControlInput1"
-                                placeholder={val.location}
+                                placeholder={userdata.location}
                                 onChange={(event) => {
                                   setNewLocation(event.target.value);
                                 }}
                               />
-                            </>
-                          );
-                        })}
                       </div>
                     </div>
                   </div>
@@ -182,29 +175,18 @@ export default function UserProfile() {
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="d-flex mt-5 justify-content-end">
-                      {List.map((val, key) => {
-                        return (
-                          <>
-                            <button
-                              type="submit"
-                              id="submit"
-                              name="submit"
-                              className="btn btn-outline-dark me-2"
-                            >
+                    <Link to="/UserProfile" class="btn btn-custom-1" type="button">
                               Cancel
-                            </button>
+                            </Link>
                             <button
                               type="submit"
                               id="submit"
                               name="submit"
                               className="btn btn-custom-1 mx-2"
-                              onClick={() => updateList(val._id)}
+                              onClick={update()}
                             >
                               Update
                             </button>
-                          </>
-                        );
-                      })}
                     </div>
                   </div>
                 </div>
