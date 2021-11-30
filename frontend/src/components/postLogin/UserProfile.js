@@ -44,13 +44,6 @@ export default function UserProfile() {
     logout();
   };
 
-  /*
-      const message = () => {
-        return (
-          <h1>Account Deleted</h1>
-        );
-      };
-*/
   return (
       <div className="container my-5 py-5">
         <div className="row">
