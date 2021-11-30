@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 import NavLogo from "../../assets/logo/logo.png";
 export default function Navbar() {
@@ -8,6 +9,21 @@ export default function Navbar() {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
+
+  const [userdata, setUserdata] = useState({
+    name: "",
+  });
+
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:3001/read/${localStorage.getItem("userId")}`
+    ).then((response) => {
+      setUserdata({
+        name: response.data.name,
+        
+      });
+    });
+  }, []);
 
   if (token) {
     return (
@@ -32,7 +48,7 @@ export default function Navbar() {
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <Link class="nav-link" to="/">
-                    Hey Syndicate
+                    {userdata.name}
                   </Link>
                 </li>
               </ul>

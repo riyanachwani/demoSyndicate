@@ -14,13 +14,12 @@ export default function Home() {
                 </h1>
                 <p class="lead fw-normal text-dark-50 mb-4">
                   We provide business holders with an online platform where they
-                  can showcase their businesses in no time through Syndicate.
+                  can showcase their businesses in no time.
                 </p>
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                   <a
                     class="btn gradient-1 btn-lg px-4 me-sm-3 text-light"
-                    href="#features"
-                  >
+                    href="/Signup">
                     Get Started
                   </a>
                   <a class="btn btn-outline-dark btn-lg px-4" href="#!">
@@ -41,10 +40,6 @@ export default function Home() {
         <div class="container px-5 my-5">
           <div className="title my-5">
             <h1>Features</h1>
-            <h6>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Explicabo, sunt.
-            </h6>
           </div>
           <div class="row gx-5">
             <div class="col-12">
@@ -53,63 +48,32 @@ export default function Home() {
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-collection"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">Hosting Facility</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                    Will give companies availability of hosting a webpage
+                    with minimum resources.
                   </p>
                 </div>
                 <div class="col mb-5 h-100">
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-building"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">No technical knowledge required</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                    No need for any specific technical knowledge for
+                    usage.
                   </p>
                 </div>
                 <div class="col mb-5 mb-md-0 h-100">
                   <div class="feature gradient-1 text-light rounded-3 mb-3">
                     <i class="bi bi-toggles2"></i>
                   </div>
-                  <h2 class="h5">Featured title</h2>
+                  <h2 class="h5">Webpage Creation</h2>
                   <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
+                  Can use available templates for webpage creation.
                   </p>
                 </div>
-                <div class="col h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-toggles2"></i>
-                  </div>
-                  <h2 class="h5">Featured title</h2>
-                  <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
-                  </p>
-                </div>{" "}
-                <div class="col h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-toggles2"></i>
-                  </div>
-                  <h2 class="h5">Featured title</h2>
-                  <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
-                  </p>
-                </div>{" "}
-                <div class="col h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-toggles2"></i>
-                  </div>
-                  <h2 class="h5">Featured title</h2>
-                  <p class="mb-0">
-                    Paragraph of text beneath the heading to explain the
-                    heading. Here is just a bit more text.
-                  </p>
-                </div>
-              </div>
+               </div>
             </div>
           </div>
         </div>
