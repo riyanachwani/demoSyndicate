@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
-export default function Dashboard() {
+export default function Share() {
   const token = localStorage.getItem("token");
 
   const getUser = async () => {
@@ -37,31 +37,26 @@ export default function Dashboard() {
   if (!token) {
     window.location.href = "/";
   } else {
-    // sessionStorage.setItem("userId", userId);
-    console.log(token);
     return (
       <>
-        <section class="py-5 bg-white my-5">
+        {/* <section class="py-5 bg-white my-5">
           <div class="container my-5">
-            <h3 className="text-center">
-              Welcome to your dashboard {userdata.name}
-            </h3>
-            {/* <!-- Call to action--> */}
-            <aside class="bg-dark rounded-5 p-4 p-sm-5 mt-5">
-              <div class="row align-items-md-stretch">
-                <div class="col-md-12">
-                  <div class="h-100 p-5 bg-light border rounded-3">
-                    <h2>{userdata.aboutSection.aboutTitle}</h2>
-                    <p>{userdata.aboutSection.aboutSubTitle}</p>
-                    <Link to="/template" class="btn btn-custom-1" type="button">
-                      Your template
-                    </Link>
-                  </div>
+            <h1 className="text-center">Share your story with other </h1>
+   
+
+            <div class="d-flex justify-content-center my-5">
+              <div class="col-md-5">
+                <div class="h-100 p-5 border rounded-3">
+                  <h2>{userdata.name}</h2>
+                  <p>{userdata.location}</p>
                 </div>
               </div>
-            </aside>
+            </div>
           </div>
-        </section>
+          
+        </section> */}
+
+        
       </>
     );
   }

@@ -14,6 +14,7 @@ import Background from "./components/postLogin/Background";
 import Preview from "./components/postLogin/Preview";
 import UserUpdate from "./components/postLogin/UserUpdate";
 import Result from "./components/postLogin/Result";
+import Share from "./components/postLogin/Share/Share";
 import React, { useState, useEffect } from "react";
 
 import Axios from "axios";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/template" element={<Template />} />
             <Route path="/background" element={<Background />} />
             <Route path="/userupdate" element={<UserUpdate />} />
+            <Route path="/share" element={<Share />} />
           </Routes>
           <Footer />
           <div>
