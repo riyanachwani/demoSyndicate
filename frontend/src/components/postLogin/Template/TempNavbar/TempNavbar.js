@@ -10,7 +10,7 @@ export default function TempNavbar() {
       companyName: "",
     },
   });
-  
+
   const [companyName, setCompanyName] = useState("");
   // const [userId, setUserId] = useState("");
   const customStyles = {
@@ -53,7 +53,7 @@ export default function TempNavbar() {
   return (
     <>
       <nav
-        class="navbar navbar-expand-lg text-dark mt-sm-0 template-hover"
+        class="navbar navbar-expand-lg text-dark mt-sm-0 template-hover border border-dark"
         onClick={() => setNavbarModalState(true)}
       >
         <div class="container p-3">
