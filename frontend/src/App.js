@@ -58,13 +58,14 @@ function App() {
             <Route path="/background" element={<Background />} />
             <Route path="/userupdate" element={<UserUpdate />} />
             <Route path="/share" element={<Share />} />
+            <Route path="/pdf" element={<pdf />} />
           </Routes>
-          <Footer />
           <div>
             <Routes>
               <Route path="/preview" element={<Preview />} />
             </Routes>
           </div>
+          <Footer />
         </main>
       </>
     );

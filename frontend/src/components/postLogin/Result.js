@@ -32,6 +32,7 @@ export default function Result() {
       twitter: "",
       linkedIn: "",
     },
+    background: "",
   });
   useEffect(() => {
     Axios.get(
@@ -73,110 +74,119 @@ export default function Result() {
             "https://linkedin.com/company/" +
             response.data.template.footerSection.linkedIn,
         },
+        background: response.data.background,
       });
       console.log(userdata.heroSection.heroTitle);
     });
   }, []);
 
   return (
-    <>
-      <nav class="navbar navbar-expand-lg text-dark mt-sm-0">
-        <div class="container p-3">
-          <Link class="navbar-brand text-dark fw-bolder" to="#/">
-            {userdata.navbar.companyName}
-          </Link>
-          <button
-            class="navbar-toggler navbar-light text-light border-0 "
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link" to="#">
-                  Home
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="#about">
-                  about
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="#">
-                  services
-                </Link>
-              </li>
-            </ul>
+    <div
+      style={{
+        background: `${userdata.background}`,
+      }}
+    >
+      <div className="container">
+        <nav class="navbar navbar-expand-lg text-dark mt-sm-0">
+          <div class="container p-3">
+            <Link class="navbar-brand text-dark fw-bolder" to="#/">
+              {userdata.navbar.companyName}
+            </Link>
+            <button
+              class="navbar-toggler navbar-light text-light border-0 "
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <Link class="nav-link" to="#">
+                    Home
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link" to="#about">
+                    about
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link" to="#">
+                    services
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        {/* TempHero */}
+        <div class="px-4 py-5 my-5 text-center">
+          {" "}
+          <div class="col-lg-8 mx-auto">
+            <h1 class="display-5 fw-bold">{userdata.heroSection.heroTitle}</h1>
+            <p class="lead mb-4"> {userdata.heroSection.heroSubTitle}</p>
           </div>
         </div>
-      </nav>
 
-      {/* TempHero */}
-      <div class="px-4 py-5 my-5 text-center">
-        {" "}
-        <div class="col-lg-8 mx-auto">
-          <h1 class="display-5 fw-bold">{userdata.heroSection.heroTitle}</h1>
-          <p class="lead mb-4"> {userdata.heroSection.heroSubTitle}</p>
-        </div>
-      </div>
-
-      {/* TempAbout*/}
-      <div class="px-4 py-5 my-5 text-center">
-        <div class="col-lg-8 mx-auto">
-          <h1 class="display-5 fw-bold"> {userdata.aboutSection.aboutTitle}</h1>
-          <p class="lead mb-4"> {userdata.aboutSection.aboutSubTitle} </p>
-        </div>
-      </div>
-
-      {/* TempSevices*/}
-      <section class="py-5 bg-white">
-        <div class="container px-5 my-5">
-          <div className="title my-5">
-            <h1 class=" fw-bolder text-dark mb-2">
-              {userdata.serviceSection.serviceTitle}
+        {/* TempAbout*/}
+        <div class="px-4 py-5 my-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <h1 class="display-5 fw-bold">
+              {" "}
+              {userdata.aboutSection.aboutTitle}
             </h1>
-            <h6> {userdata.serviceSection.serviceSubTitle}</h6>
+            <p class="lead mb-4"> {userdata.aboutSection.aboutSubTitle} </p>
           </div>
-          <div class="row gx-5">
-            <div class="col-12">
-              <div class="row gx-5 row-cols-1 row-cols-md-3">
-                <div class="col mb-5 h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-collection"></i>
+        </div>
+
+        {/* TempSevices*/}
+        <section class="py-5 bg-white rounded-5">
+          <div class="container px-5 my-5">
+            <div className="title my-5">
+              <h1 class=" fw-bolder text-dark mb-2">
+                {userdata.serviceSection.serviceTitle}
+              </h1>
+              <h6> {userdata.serviceSection.serviceSubTitle}</h6>
+            </div>
+            <div class="row gx-5">
+              <div class="col-12">
+                <div class="row gx-5 row-cols-1 row-cols-md-3">
+                  <div class="col mb-5 h-100">
+                    <div class="feature gradient-1 text-light rounded-3 mb-3">
+                      <i class="bi bi-collection"></i>
+                    </div>
+                    <h2 class="h5"> {userdata.serviceSection.service1Title}</h2>
+                    <p class="mb-0">{userdata.serviceSection.service1Desc}</p>
                   </div>
-                  <h2 class="h5"> {userdata.serviceSection.service1Title}</h2>
-                  <p class="mb-0">{userdata.serviceSection.service1Desc}</p>
-                </div>
-                <div class="col mb-5 h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-building"></i>
+                  <div class="col mb-5 h-100">
+                    <div class="feature gradient-1 text-light rounded-3 mb-3">
+                      <i class="bi bi-building"></i>
+                    </div>
+                    <h2 class="h5"> {userdata.serviceSection.service2Title}</h2>
+                    <p class="mb-0">{userdata.serviceSection.service2Desc}</p>
                   </div>
-                  <h2 class="h5"> {userdata.serviceSection.service2Title}</h2>
-                  <p class="mb-0">{userdata.serviceSection.service2Desc}</p>
-                </div>
-                <div class="col mb-5 mb-md-0 h-100">
-                  <div class="feature gradient-1 text-light rounded-3 mb-3">
-                    <i class="bi bi-toggles2"></i>
+                  <div class="col mb-5 mb-md-0 h-100">
+                    <div class="feature gradient-1 text-light rounded-3 mb-3">
+                      <i class="bi bi-toggles2"></i>
+                    </div>
+                    <h2 class="h5"> {userdata.serviceSection.service3Title}</h2>
+                    <p class="mb-0">{userdata.serviceSection.service3Desc}</p>
                   </div>
-                  <h2 class="h5"> {userdata.serviceSection.service3Title}</h2>
-                  <p class="mb-0">{userdata.serviceSection.service3Desc}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* TempFooter*/}
-      <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        {/* TempFooter*/}
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center border-top py-5">
           <div class="col-md-4 d-flex align-items-center">
             <span class="text-muted">
               {userdata.name} &copy; 2021 Company, Inc
@@ -220,6 +230,6 @@ export default function Result() {
           </ul>
         </footer>
       </div>
-    </>
+    </div>
   );
 }

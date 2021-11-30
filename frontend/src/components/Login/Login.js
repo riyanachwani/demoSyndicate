@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { useEffect } from "react";
-import LoginImg from "../../assets/illustration/login.jpg";
+import LoginImg from "../../assets/illustration/login.png";
 import Axios from "axios";
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function Login() {
       email: email,
       password: password,
     });
-    if (response) {
+    if (response.status === 200) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.userId);
       console.log(response);

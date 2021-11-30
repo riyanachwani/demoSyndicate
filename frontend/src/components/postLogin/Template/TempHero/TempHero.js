@@ -46,7 +46,6 @@ export default function TempHero() {
     });
   }, []);
 
-
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
     Axios.put(
@@ -62,40 +61,12 @@ export default function TempHero() {
   return (
     <>
       <div
-        class="px-4 py-5 my-5 text-center template-hover"
+        class="px-4 py-5 my-5 text-center template-hover  border border-dark"
         onClick={() => setHeroModalState(true)}
       >
-        {" "}
-        {/* {user.map((users) => {
-          user._id = users._id;
-          return users.template.map((template) => {
-            return template.heroSection.map((heroSection) => {
-              user.heroTitle = heroSection.heroTitle;
-              user.herosubTitle = heroSection.herosubTitle;
-            });
-          });
-        })} */}
-        {/* <img
-            class="d-block mx-auto mb-4"
-            src="/docs/5.1/assets/brand/bootstrap-logo.svg"
-            alt="Company logo"
-            width="72"
-            height="57"
-          /> */}
         <h1 class="display-5 fw-bold">{userdata.heroSection.heroTitle}</h1>
         <div class="col-lg-6 mx-auto">
           <p class="lead mb-4">{userdata.heroSection.heroSubTitle}</p>
-          {/* <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
-                Primary button
-              </button>
-              <button
-                type="button"
-                class="btn btn-outline-secondary btn-lg px-4"
-              >
-                Secondary
-              </button>
-            </div> */}
         </div>
       </div>
 

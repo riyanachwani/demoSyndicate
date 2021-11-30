@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { HexColorPicker } from "react-colorful";
+import Axios from "axios";
+import { Link } from "react-router-dom";
 export default function Background() {
   const [color, setColor] = useState("#AAD5FF");
-  const [getColor, setGetColor] = useState("");
+
   const customColor = {
     color1: "#2b2c34",
     color2: "#e3f6f5",
@@ -11,15 +13,28 @@ export default function Background() {
     color5: "#d6bcfa",
   };
   const fetchColor = (selectedColor) => {
-    setGetColor(selectedColor);
-    console.log(getColor);
+    setColor(selectedColor);
+    console.log(color);
   };
+  let updateBackground = () => {
+    let userId = localStorage.getItem("userId");
+    Axios.put(
+      `http://localhost:3001/update/${localStorage.getItem("userId")}`,
+      {
+        id: userId,
+        background: color,
+      }
+    );
+  };
+
   return (
     <>
       <section class="py-5 bg-white my-5">
         <div class="container my-5 ">
           <div className="my-2 d-flex justify-content-between">
-            <button className="btn btn-dark">Preview</button>
+            <Link to="/preview" className="btn btn-dark">
+              Preview
+            </Link>
           </div>
           {/* <!-- Call to action--> */}
           <aside class=" border rounded-5 p-4 p-sm-5 mt-5">
@@ -101,7 +116,9 @@ export default function Background() {
               </div>
             </div>
             <div className="d-flex justify-content-end my-3">
-              <button className="btn btn-custom-1 ">Save</button>
+              <button className="btn btn-custom-1 " onClick={updateBackground}>
+                Save
+              </button>
             </div>
           </aside>
         </div>

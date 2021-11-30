@@ -32,6 +32,7 @@ export default function Preview() {
       twitter: "",
       linkedIn: "",
     },
+    background: "",
   });
   useEffect(() => {
     Axios.get(
@@ -73,24 +74,33 @@ export default function Preview() {
             "https://linkedin.com/company/" +
             response.data.template.footerSection.linkedIn,
         },
+        background: response.data.background,
       });
+
       console.log(userdata.heroSection.heroTitle);
     });
   }, []);
 
   return (
     <>
-      <section class="py-5 bg-white my-5">
+      <section class="py-5 my-5">
         <div class="container my-5 ">
           <div className="my-2 d-flex justify-content-between">
-            <div className=""></div>
+            <Link to="/template" className="btn btn-custom-1">
+              Edit
+            </Link>
 
-            <Link to="/preview" className="btn btn-dark">
+            <Link to="/share" className="btn btn-dark">
               Share
             </Link>
           </div>
           {/* <!-- Call to action--> */}
-          <aside class=" border rounded-5 p-4 p-sm-5 mt-5">
+          <aside
+            class=" border rounded-5 p-4 p-sm-5 mt-5"
+            style={{
+              background: `${userdata.background}`,
+            }}
+          >
             <div class="d-flex flex-column flex-xl-row text-center text-xl-start"></div>
 
             {/* TempNav */}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import LoginImg from "../../assets/illustration/login.jpg";
+import SignImg from "../../assets/illustration/signup.png";
 import Axios from "axios";
 
 export default function Signup() {
@@ -20,13 +20,18 @@ export default function Signup() {
   console.log(username);
   const addToList = (event) => {
     event.preventDefault();
-    Axios.post("http://localhost:3001/signup", {
+    const response = Axios.post("http://localhost:3001/signup", {
       name: name,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
       location: location,
     });
+    if (response) {
+      window.location.href = "/login";
+    } else {
+      alert("Signup Failed");
+    }
   };
 
   useEffect(() => {
@@ -40,8 +45,8 @@ export default function Signup() {
       <section class="py-5 my-5">
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
           <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-lg-6 text-center text-lg-start">
-              <img src={LoginImg} alt="" className="img-fluid" />
+            <div class="col-lg-6 text-center text-lg-start p-0">
+              <img src={SignImg} alt="" className="img-fluid" />
             </div>
             <div class="col-md-10 mx-auto col-lg-6">
               <form class="p-4 p-md-5 border rounded-5">

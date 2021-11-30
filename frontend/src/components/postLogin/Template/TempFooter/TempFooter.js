@@ -53,7 +53,6 @@ export default function TempFooter() {
     });
   }, []);
 
-
   let updatenavbar = () => {
     let userId = localStorage.getItem("userId");
     Axios.put(
@@ -68,11 +67,10 @@ export default function TempFooter() {
     );
   };
 
-
   return (
     <>
       <div
-        class="container template-hover"
+        class="container template-hover  border border-dark my-4"
         onClick={() => setFooterModalState(true)}
       >
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -181,15 +179,15 @@ export default function TempFooter() {
                 setCompanyName(document.getElementById("compnay-name").value);
                 setInstagram(
                   "https://instagram.com/" +
-                  document.getElementById("insta").value
+                    document.getElementById("insta").value
                 );
                 setTwitter(
                   "https://twitter.com/" +
-                  document.getElementById("twitter").value
+                    document.getElementById("twitter").value
                 );
                 setLinkedIn(
                   "https://linkedIn.com/in/" +
-                  document.getElementById("linkedin").value
+                    document.getElementById("linkedin").value
                 );
                 updatenavbar();
 

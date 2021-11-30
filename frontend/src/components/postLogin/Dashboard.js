@@ -17,6 +17,11 @@ export default function Dashboard() {
     },
   });
 
+  const [userName, setUserName] = useState("");
+
+  const id = "/" + userName.replace(/\s+/g, "").toLowerCase();
+  console.log(id);
+
   useEffect(() => {
     Axios.get(
       `http://localhost:3001/read/${localStorage.getItem("userId")}`
@@ -28,6 +33,7 @@ export default function Dashboard() {
           aboutSubTitle: response.data.template.aboutSection.aboutSubTitle,
         },
       });
+      setUserName(response.data.name);
     });
   }, []);
 
@@ -43,23 +49,34 @@ export default function Dashboard() {
       <>
         <section class="py-5 bg-white my-5">
           <div class="container my-5">
-            <h3 className="text-center">
-              Welcome to your dashboard {userdata.name}
+            <h3 className="text-center display-5 ">
+              Ready to create your own website?
             </h3>
             {/* <!-- Call to action--> */}
-            <aside class="bg-dark rounded-5 p-4 p-sm-5 mt-5">
-              <div class="row align-items-md-stretch">
-                <div class="col-md-12">
-                  <div class="h-100 p-5 bg-light border rounded-3">
-                    <h2>{userdata.aboutSection.aboutTitle}</h2>
-                    <p>{userdata.aboutSection.aboutSubTitle}</p>
-                    <Link to="/template" class="btn btn-custom-1" type="button">
-                      Your template
+            <div class="d-flex justify-content-center my-5">
+              <div class="col-lg-5 col-12">
+                <div class="h-100 p-5 border text-center text-light rounded-5  gradient-1">
+                  <h3>{userdata.name}</h3>
+                  <p>{userdata.aboutSection.aboutSubTitle}</p>
+                  <div className="d-flex justify-content-between">
+                    <Link
+                      to="/template"
+                      class="btn btn-light px-3"
+                      type="button"
+                    >
+                      Edit
                     </Link>
+                    <a
+                      href={id}
+                      class="btn btn-outline-light px-3"
+                      type="button"
+                    >
+                      Visit
+                    </a>
                   </div>
                 </div>
               </div>
-            </aside>
+            </div>
           </div>
         </section>
       </>

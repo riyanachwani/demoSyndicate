@@ -81,7 +81,7 @@ export default function TempServiecs() {
   return (
     <>
       <section
-        class="py-5 bg-white template-hover"
+        class="py-5 bg-white template-hover  border border-dark"
         onClick={() => setServicesModalState(true)}
       >
         <div class="container px-5 my-5">

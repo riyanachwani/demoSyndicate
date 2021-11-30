@@ -58,7 +58,7 @@ export default function TempAbout() {
   return (
     <>
       <div
-        class="px-4 py-5 my-5 text-center template-hover "
+        class="px-4 py-5 my-5 text-center template-hover  border border-dark"
         onClick={() => setAboutModalState(true)}
       >
         {/* <img

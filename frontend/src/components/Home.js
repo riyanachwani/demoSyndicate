@@ -19,7 +19,8 @@ export default function Home() {
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                   <a
                     class="btn gradient-1 btn-lg px-4 me-sm-3 text-light"
-                    href="/Signup">
+                    href="/Signup"
+                  >
                     Get Started
                   </a>
                   <a class="btn btn-outline-dark btn-lg px-4" href="#!">
@@ -39,7 +40,8 @@ export default function Home() {
       <section class="py-5 bg-white">
         <div class="container px-5 my-5">
           <div className="title my-5">
-            <h1>Features</h1>
+            <h1>OUR SERVICES</h1>
+            <p></p>
           </div>
           <div class="row gx-5">
             <div class="col-12">
@@ -50,8 +52,8 @@ export default function Home() {
                   </div>
                   <h2 class="h5">Hosting Facility</h2>
                   <p class="mb-0">
-                    Will give companies availability of hosting a webpage
-                    with minimum resources.
+                    Will give companies availability of hosting a webpage with
+                    minimum resources.
                   </p>
                 </div>
                 <div class="col mb-5 h-100">
@@ -60,8 +62,7 @@ export default function Home() {
                   </div>
                   <h2 class="h5">No technical knowledge required</h2>
                   <p class="mb-0">
-                    No need for any specific technical knowledge for
-                    usage.
+                    No need for any specific technical knowledge for usage.
                   </p>
                 </div>
                 <div class="col mb-5 mb-md-0 h-100">
@@ -70,10 +71,10 @@ export default function Home() {
                   </div>
                   <h2 class="h5">Webpage Creation</h2>
                   <p class="mb-0">
-                  Can use available templates for webpage creation.
+                    Can use available templates for webpage creation.
                   </p>
                 </div>
-               </div>
+              </div>
             </div>
           </div>
         </div>
