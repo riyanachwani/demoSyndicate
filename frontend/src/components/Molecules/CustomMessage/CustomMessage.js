@@ -7,19 +7,34 @@ export default function CustomMessage({
   rounded,
   align,
   margin,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  marginX,
+  marginY,
   Isclose,
 }) {
   const close = () => {
     document.getElementById(id).style.display = "none";
   };
+  const customStyle = {
+    margin: margin,
+    marginTop: marginTop,
+    marginBottom: marginBottom,
+    marginLeft: marginLeft,
+    marginRight: marginRight,
+    borderRadius: rounded,
+    margin: `${marginX} 0`,
+    margin: `0 ${marginY}`,
+  };
+
   if (rounded == true) {
     return (
       <div
         className="custom-message px-4  py-3 rounded-5 shadow-sm bg-gray-100"
         id={id}
-        style={{
-          margin: margin ? margin : "0 auto",
-        }}
+        style={customStyle}
       >
         <div
           className="d-flex text-dark"
@@ -40,9 +55,7 @@ export default function CustomMessage({
       <div
         className=" px-4  py-3 shadow-sm bg-gray-100"
         id={id}
-        style={{
-          margin: margin ? margin : "0 auto",
-        }}
+        style={customStyle}
       >
         <div
           className="d-flex text-dark"
