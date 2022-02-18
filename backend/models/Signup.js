@@ -110,7 +110,24 @@ const SignupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  
   template: templateSchema,
+  
+  background: {
+    type: String,
+    required: true,
+  },
+  
+  currentDate: {
+    type: Date,
+    required: true,
+  },
+  
+  lastUpdated: {
+    type: Date,
+    required: true,
+  },
+  
 });
 
 //Pass it to mongoose
