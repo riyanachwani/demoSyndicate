@@ -27,11 +27,13 @@ router.post("/signup", async (req, res) => {
       heroSection: {
         heroTitle: "Here you can write heading which will help you to represent your company",
         heroSubTitle: "This space can be used to write tagline of your company",
+        Toggle:"true",
       },
 
       aboutSection: {
         aboutTitle: "This part can be used to write about your company",
         aboutSubTitle: "Detailed information about your company",
+        Toggle:"true",
       },
 
       serviceSection: {
@@ -46,6 +48,8 @@ router.post("/signup", async (req, res) => {
 
         services3Title: "Data and Analytics (Service 3)",
         services3Desc: "Description about service 3",
+
+        Toggle:"true",
       },
 
       footerSection: {
@@ -53,6 +57,7 @@ router.post("/signup", async (req, res) => {
         instagram: "instagram",
         twitter: "twitter",
         linkedIn: "linkedIn",
+        Toggle:"true",
       },
 
     },
@@ -60,6 +65,7 @@ router.post("/signup", async (req, res) => {
     background: "#ffffff",
     currentDate: "2018-01-09",
     lastUpdated:"2018-01-09",
+
 
   });
 
