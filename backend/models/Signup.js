@@ -16,6 +16,10 @@ const heroSectionSchema = {
     type: String,
     required: true,
   },
+  Toggle: {
+    type: Boolean,
+    required: true,
+  },
 };
 
 const aboutSectionSchema = {
@@ -25,6 +29,10 @@ const aboutSectionSchema = {
   },
   aboutSubTitle: {
     type: String,
+    required: true,
+  },
+  Toggle: {
+    type: Boolean,
     required: true,
   },
 };
@@ -44,6 +52,10 @@ const footerSectionSchema = {
   },
   linkedIn: {
     type: String,
+    required: true,
+  },
+  Toggle: {
+    type: Boolean,
     required: true,
   },
 };
@@ -81,6 +93,10 @@ const serviceSectionSchema = {
     type: String,
     required: true,
   },
+  Toggle: {
+    type: Boolean,
+    required: true,
+  },
 };
 
 const templateSchema = {
@@ -110,7 +126,7 @@ const SignupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  
+
   template: templateSchema,
   
   background: {
