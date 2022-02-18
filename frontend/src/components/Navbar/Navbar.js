@@ -127,7 +127,7 @@ export default function Navbar() {
               <Link to="/login" className="btn gradient-1 text-light mx-2">
                 Login
               </Link>
-              <Link to="/signup" className="btn btn-outline-dark mx-2">
+              <Link to="/signup" className="btn btn-outline mx-2">
                 Signup
               </Link>
             </div>

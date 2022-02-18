@@ -11,8 +11,6 @@ export default function CustomMessage({
   marginBottom,
   marginLeft,
   marginRight,
-  marginX,
-  marginY,
   Isclose,
 }) {
   const close = () => {
@@ -25,8 +23,6 @@ export default function CustomMessage({
     marginLeft: marginLeft,
     marginRight: marginRight,
     borderRadius: rounded,
-    margin: `${marginX} 0`,
-    margin: `0 ${marginY}`,
   };
 
   if (rounded == true) {

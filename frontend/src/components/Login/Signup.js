@@ -101,9 +101,8 @@ export default function Signup() {
             </div>
             <div className="col-md-10 mx-auto col-lg-6">
               <form className="p-4 p-md-5 border rounded-5">
-                <h3 className=" m-0 p-0 pb-3">
-                  <span className="text-custom-1">Sign-up</span> for an account
-                </h3>
+                <h3 className=" m-0 p-0 pb-2">Hi, nice to see you 👋🏻</h3>
+                <p>Create a new account</p>
                 <div className="form-floating mb-3">
                   <Input
                     type="text"

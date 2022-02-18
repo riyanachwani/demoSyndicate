@@ -65,9 +65,8 @@ export default function Login() {
             </div>
             <div className="col-md-10 mx-auto col-lg-6">
               <form className="p-4 p-md-5 border rounded-5">
-                <h3 className=" m-0 p-0 pb-3">
-                  <span className="text-custom-1">Login</span> to your account
-                </h3>
+                <h3 className=" m-0 p-0 pb-2">Welcome Back 👋🏻</h3>
+                <p>Login to Syndicate</p>
                 <div className="form-floating mb-3">
                   <Input
                     type="email"

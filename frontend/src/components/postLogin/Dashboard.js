@@ -57,7 +57,8 @@ export default function Dashboard() {
               id="help-guide"
               message="Welcome to your dashboard. Here you can see your profile, share your profile, and view your profile."
               rounded
-              marginY="5rem"
+              marginTop="2rem"
+              marginBottom="2rem"
             />
 
             <div className="d-flex justify-content-between">
