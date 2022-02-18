@@ -1,5 +1,6 @@
 import React from "react";
 import HeroImg from "../assets/logo/logo.png";
+import CustomMessage from "./Molecules/CustomMessage/CustomMessage";
 export default function Home() {
   return (
     <>
@@ -23,7 +24,7 @@ export default function Home() {
                   >
                     Get Started
                   </a>
-                  <a class="btn btn-outline-dark btn-lg px-4" href="#!">
+                  <a class="btn btn-outline btn-lg px-4" href="#!">
                     Learn More
                   </a>
                 </div>

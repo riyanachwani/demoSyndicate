@@ -1,4 +1,4 @@
-import "./css/App.css";
+import "./css/App.scss";
 import ReactModal from "react-modal";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home";
@@ -47,6 +47,7 @@ function App() {
       <>
         <main>
           <Navbar />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -65,8 +66,8 @@ function App() {
               <Route path="/preview" element={<Preview />} />
             </Routes>
           </div>
-          <Footer />
         </main>
+        <Footer />
       </>
     );
   }

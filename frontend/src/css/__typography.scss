@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+$f-64: 64px;
+$f-60: 60px;
+$f-56: 56px;
+$f-52: 52px;
+$f-48: 48px;
+$f-44: 44px;
+$f-40: 40px;
+$f-36: 36px;
+$f-32: 32px;
+$f-28: 28px;
+$f-24: 24px;
+$f-20: 20px;
+$f-18: 18px;
+$f-16: 16px;
+$f-14: 14px;
+$f-12: 12px;
+$f-10: 10px;
+$f-8: 8px;
+$f-6: 6px;
+$f-4: 4px;
+
+$font-poppins: "Poppins", sans-serif;
+$font-quicksand: "Quicksand", sans-serif;
+
+.display-1 {
+  font-size: $f-64;
+}
+
+.display-2 {
+  font-size: $f-56;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.text-xl,
+.text-lg,
+.text-md,
+.text-sm,
+.text-xs,
+.button-lg,
+.button-md {
+  font-family: QuickSand;
+}
+
+.text-xl {
+  font-size: $f-20;
+}
+
+.text-lg {
+  font-size: $f-18;
+}
+.text-md {
+  font-size: $f-16;
+}
+.text-sm {
+  font-size: $f-14;
+}
+.text-xs {
+  font-size: $f-12;
+}
+
+.caption-lg {
+  font-size: $f-14;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.caption-md {
+  font-size: $f-12;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.caption-sm {
+  font-size: $f-10;
+  font-family: "Poppins";
+}

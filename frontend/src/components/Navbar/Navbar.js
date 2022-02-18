@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
+
+import { FaSignOutAlt } from "react-icons/fa";
+import { MdSpaceDashboard } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import NavLogo from "../../assets/logo/logo.png";
+
+import "./Navbar.scss";
+import Dropdown from "../Molecules/Dropdown/Dropdown";
+
 export default function Navbar() {
   const token = localStorage.getItem("token");
 
@@ -20,7 +27,7 @@ export default function Navbar() {
     ).then((response) => {
       setUserdata({
         name: response.data.name,
-        
+        email: response.data.email,
       });
     });
   }, []);
@@ -28,67 +35,48 @@ export default function Navbar() {
   if (token) {
     return (
       <>
-        <nav class="navbar navbar-expand-lg text-dark bg-transparent shadow-sm mt-sm-0 fixed-top ">
+        <nav class="navbar navbar-expand-lg text-dark bg-transparent mt-sm-0 fixed-top ">
           <div class="container p-3">
-            <Link class="navbar-brand text-dark fw-bolder" to="/">
+            <Link class="user-brand fw-bolder" to="/">
               Syndicate
             </Link>
-            <button
-              class="navbar-toggler navbar-light text-light border-0 "
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <Link class="nav-link" to="/">
-                    {userdata.name}
-                  </Link>
-                </li>
-              </ul>
 
-              <div class="dropdown text-start">
-                <a
-                  href="#"
-                  class="d-block link-dark text-decoration-none dropdown-toggle "
-                  id="dropdownUser1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+            <Dropdown>
+              <p>
+                Logged in as <br />
+                <span>{userdata.email}</span>
+              </p>
+              <hr />
+              <li>
+                <Link
+                  class="dropdown-item d-flex justify-content-between"
+                  to="/dashboard"
                 >
-                  <img
-                    src={NavLogo}
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle"
-                  />
+                  Dashboard
+                  <MdSpaceDashboard className="align-self-center fs-6" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  class="dropdown-item d-flex justify-content-between"
+                  to="/userprofile"
+                >
+                  Profile
+                  <CgProfile className="align-self-center fs-6" />
+                </Link>
+              </li>
+              {/* <li><hr class="dropdown-divider"></li> */}
+              <li>
+                <a
+                  class="dropdown-item d-flex justify-content-between"
+                  href="#"
+                  onClick={logout}
+                >
+                  Sign out
+                  <FaSignOutAlt className="align-self-center fs-6" />
                 </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdown">
-                  <li>
-                    <Link class="dropdown-item" to="/dashboard">
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to="/userprofile">
-                      Profile
-                    </Link>
-                  </li>
-                  {/* <li><hr class="dropdown-divider"></li> */}
-                  <li>
-                    <a class="dropdown-item" href="#" onClick={logout}>
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              </li>
+            </Dropdown>
           </div>
         </nav>
         {/* <!-- Header-->? */}
@@ -98,7 +86,7 @@ export default function Navbar() {
     return (
       <>
         <nav class="navbar navbar-expand-lg text-dark bg-transparent shadow-sm mt-sm-0 fixed-top ">
-          <div class="container p-3">
+          <div class="container p-2">
             <Link class="navbar-brand text-dark fw-bolder" to="/">
               Syndicate
             </Link>

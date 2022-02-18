@@ -1,0 +1,90 @@
+$color-1: #6246ea;
+$color-2: #6e56e6;
+$color-3: #9a6efa;
+$color-4: #ff8e88;
+$color-5: #34376a;
+$color-6: #d1d1e9;
+
+$gray-900: #1a1a1a;
+$gray-800: #2d2d2d;
+$gray-700: #4a4a4a;
+$gray-600: #636363;
+$gray-500: #757575;
+$gray-400: #9e9e9e;
+$gray-300: #c2c2c2;
+$gray-200: #e2e2e2;
+$gray-100: #f2f2f2;
+
+$purple-900: #6e56e6;
+$purple-800: #8e6af2;
+$purple-700: #b085f9;
+$purple-600: #c69af9;
+$purple-500: #d9b5f9;
+$purple-400: #e9d2f9;
+$purple-300: #f9e6f9;
+$purple-200: #f9f9f9;
+$purple-100: #f9f9f9;
+
+.text-gray-900 {
+  color: $gray-900;
+}
+.text-gray-800 {
+  color: $gray-800;
+}
+.text-gray-700 {
+  color: $gray-700;
+}
+.text-gray-600 {
+  color: $gray-600;
+}
+.text-gray-500 {
+  color: $gray-500;
+}
+.text-gray-400 {
+  color: $gray-400;
+}
+.text-gray-300 {
+  color: $gray-300;
+}
+.text-gray-200 {
+  color: $gray-200;
+}
+.text-gray-100 {
+  color: $gray-100;
+}
+
+//background gray
+.bg-gray-900 {
+  background-color: $gray-900;
+}
+.bg-gray-800 {
+  background-color: $gray-800;
+}
+.bg-gray-700 {
+  background-color: $gray-700;
+}
+.bg-gray-600 {
+  background-color: $gray-600;
+}
+.bg-gray-500 {
+  background-color: $gray-500;
+}
+.bg-gray-400 {
+  background-color: $gray-400;
+}
+.bg-gray-300 {
+  background-color: $gray-300;
+}
+.bg-gray-200 {
+  background-color: $gray-200;
+}
+.bg-gray-100 {
+  background-color: $gray-100;
+}
+
+.link-gray {
+  color: $gray-500;
+  &:hover {
+    color: $gray-200;
+  }
+}

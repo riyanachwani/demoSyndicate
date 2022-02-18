@@ -1,0 +1,98 @@
+@import "../../../css/_color";
+@import "../../../css/_typography";
+
+.btn {
+  padding: 8px 18px;
+  font-style: normal;
+  font-family: $font-poppins;
+  font-size: $f-14;
+  border: none;
+
+  border-radius: 8px;
+
+  &:focus {
+    outline: none !important;
+  }
+  outline: none !important;
+}
+.btn-pill {
+  border-radius: 30px;
+
+  &:hover {
+    background: $purple-700;
+  }
+}
+.btn-lg {
+  padding: 12px 24px;
+  font-size: $f-16;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: $f-12;
+  font-weight: 600;
+}
+
+.btn-purple {
+  background: $purple-500;
+  &:hover {
+    background: $purple-700;
+  }
+}
+
+.btn-gray {
+  background: $gray-500;
+  &:hover {
+    background: $gray-700;
+  }
+}
+
+// Button Soft
+.btn-soft {
+  background: $purple-100;
+  color: $purple-700;
+  &:hover {
+    background: $purple-300;
+  }
+}
+
+.btn-gray-soft {
+  background: $gray-100;
+  color: $gray-700;
+  &:hover {
+    background: $gray-300;
+  }
+}
+//button-outline
+
+.btn-outline {
+  background: transparent;
+  color: $gray-900;
+  border: 1px solid $gray-300;
+  &:hover {
+    background: $gray-100;
+    border: 1px solid $gray-500;
+  }
+}
+
+// Text Button
+
+.btn-text {
+  color: $gray-900;
+  background: transparent;
+}
+
+// Button Dark and Light
+
+.btn-dark {
+  background: $gray-900;
+  color: $gray-100;
+  &:hover {
+    background: $gray-700;
+  }
+}
+
+.btn-light {
+  background: $gray-100;
+  color: $gray-900;
+}
