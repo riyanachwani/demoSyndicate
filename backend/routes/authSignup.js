@@ -9,7 +9,7 @@ router.post("/signup", async (req, res) => {
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
   const location = req.body.location;
-
+  var today = new Date();
   //const template=req.body.template;
 
   // const newpassword = bcrypt.hashSync(password, 10);
@@ -63,8 +63,8 @@ router.post("/signup", async (req, res) => {
     },
 
     background: "#ffffff",
-    currentDate: "2018-01-09",
-    lastUpdated:"2018-01-09",
+    currentDate: today,
+    lastUpdated: today,
 
 
   });
