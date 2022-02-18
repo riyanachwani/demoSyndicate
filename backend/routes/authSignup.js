@@ -25,36 +25,42 @@ router.post("/signup", async (req, res) => {
       },
 
       heroSection: {
-        heroTitle: "heroTitle",
-        heroSubTitle: "heroSubTitle",
+        heroTitle: "Here you can write heading which will help you to represent your company",
+        heroSubTitle: "This space can be used to write tagline of your company",
       },
 
       aboutSection: {
-        aboutTitle: "aboutTitle",
-        aboutSubTitle: "aboutSubTitle",
+        aboutTitle: "This part can be used to write about your company",
+        aboutSubTitle: "Detailed information about your company",
       },
 
       serviceSection: {
-        servicesTitle: "servicesTitle",
-        servicesSubTitle: "servicesSubTitle",
+        servicesTitle: "Can be used to write what services your company offers",
+        servicesSubTitle: "Short description about those services",
 
-        services1Title: "services1Title",
-        services1Desc: "services1Desc",
+        services1Title: "Analysis and Design (Service 1)",
+        services1Desc: "Description about service 1",
 
-        services2Title: "services2Title",
-        services2Desc: "services2Desc",
+        services2Title: "Software Development (Service 2)",
+        services2Desc: "Description about service 2",
 
-        services3Title: "services3Title",
-        services3Desc: "services3Desc",
+        services3Title: "Data and Analytics (Service 3)",
+        services3Desc: "Description about service 3",
       },
 
       footerSection: {
-        companyName: "footerTitle",
+        companyName: "Here you can write name of your company",
         instagram: "instagram",
         twitter: "twitter",
         linkedIn: "linkedIn",
       },
+
     },
+
+    background: "#ffffff",
+    currentDate: "2018-01-09",
+    lastUpdated:"2018-01-09",
+
   });
 
   try {
