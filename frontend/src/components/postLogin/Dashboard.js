@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Atoms/Button";
 import { BiStats } from "react-icons/bi";
+import Modal from "react-modal";
 
 import { Link } from "react-router-dom";
 import Axios from "axios";
@@ -8,7 +9,7 @@ import CustomMessage from "../Molecules/CustomMessage/CustomMessage";
 
 export default function Dashboard() {
   const token = localStorage.getItem("token");
-
+ 
   const getUser = async () => {
     console.log("token");
   };
@@ -25,6 +26,8 @@ export default function Dashboard() {
 
   const id = "/" + userName.replace(/\s+/g, "").toLowerCase();
   console.log(id);
+
+
 
   useEffect(() => {
     Axios.get(
@@ -53,14 +56,7 @@ export default function Dashboard() {
       <>
         <section class="py-5 bg-white my-5">
           <div class="container my-3">
-            <CustomMessage
-              id="help-guide"
-              message="Welcome to your dashboard. Here you can see your profile, share your profile, and view your profile."
-              rounded
-              marginTop="2rem"
-              marginBottom="2rem"
-            />
-
+           
             <div className="d-flex justify-content-between">
               <div className="text-start col-8">
                 <h5 className="fw-bold">Dashboard</h5>
@@ -133,6 +129,7 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
+
       </>
     );
   }
