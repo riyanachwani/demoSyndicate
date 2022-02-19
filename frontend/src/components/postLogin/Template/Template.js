@@ -81,13 +81,57 @@ export default function Template() {
             >
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <div className="card p-5 ">Hello</div>
+                  <div className="card p-5 ">
+                    <h2>Navigation Bar</h2>
+                    This helps you to provide an organised list of certain links used by the site visitors to jump on different sections of the webpage.
+                  </div>
                 </div>
                 <div class="carousel-item">
-                  <div className="card p-5 ">Hellos</div>
+                  <div className="card p-5 ">
+                  <h2>Hero Section</h2>
+                    <p>
+                      1)It is the first section after navigation bar that the visitors sees when they visit your webpage.
+                    </p>
+                    <p>
+                      2)This plays a very powerful role in the creation of the webpage, as it helps to grab the interest of the site visitor.
+                    </p>
+                    <p>
+                      3)Here you can add name, heading and subheading for your webpage.
+                      </p> 
+                    </div>
                 </div>
                 <div class="carousel-item">
-                  <div className="card p-5 ">Helloss</div>
+                  <div className="card p-5 ">
+                    <h2>About Section</h2>
+                    <p>
+                      1)This section can be used to add detailed information about your company. 
+                    </p>
+                    <p>
+                      2)It allows the visitors to get a bigger picture and also helps them to understand goals, vission and mission of your company.
+                    </p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div className="card p-5 ">
+                  <h2>Services Section</h2>
+                    <p>
+                    This is one of the most critical sections of your webpage, as it not only lets you to add all the services which are offered by your company but also makes the webpage more engaging.
+                    </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                  <div className="card p-5 ">
+                  <h2>Footer Section</h2>
+                    <p>
+                      1)This is the last section of the webpage.
+                    </p>
+                    <p>
+                      2)It usually contains logo, contact information and links to multiple social media sites.
+                    </p>
+                    <p>
+                      3)In short, a footer helps to add navigation at the bottom of the webpage and contains information that improves a website's overall usability.
+                      </p> 
+                    </div>
                 </div>
               </div>
             </div>
