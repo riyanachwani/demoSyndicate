@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 import Axios from "axios";
-import { Link } from "react-router-dom";
 
 export default function TempHero() {
   const [heroModalRef, setHeroModalState] = useState(false);
@@ -9,8 +8,6 @@ export default function TempHero() {
   const [heroSubTitle, setHeroSubTitle] = useState(
     "hey this is syndicate, we make your websites in no time"
   );
-  const [user, setUser] = useState([]);
-  const [userId, setUserId] = useState("");
 
   const customStyles = {
     overlay: {

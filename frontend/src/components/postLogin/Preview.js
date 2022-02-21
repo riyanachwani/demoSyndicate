@@ -76,8 +76,6 @@ export default function Preview() {
         },
         background: response.data.background,
       });
-
-      console.log(userdata.heroSection.heroTitle);
     });
   }, []);
 

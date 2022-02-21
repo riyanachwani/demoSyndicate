@@ -69,7 +69,8 @@ export default function Navbar() {
               <li>
                 <a
                   class="dropdown-item d-flex justify-content-between"
-                  href="#"
+                  href="#!"
+                  rel="noreferrer"
                   onClick={logout}
                 >
                   Sign out

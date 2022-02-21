@@ -9,7 +9,7 @@ router.post("/signup", async (req, res) => {
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
   const location = req.body.location;
-  var today = new Date();
+
   //const template=req.body.template;
 
   // const newpassword = bcrypt.hashSync(password, 10);
@@ -25,15 +25,16 @@ router.post("/signup", async (req, res) => {
       },
 
       heroSection: {
-        heroTitle: "Here you can write heading which will help you to represent your company",
+        heroTitle:
+          "Here you can write heading which will help you to represent your company",
         heroSubTitle: "This space can be used to write tagline of your company",
-        Toggle:"true",
+        Toggle: "true",
       },
 
       aboutSection: {
         aboutTitle: "This part can be used to write about your company",
         aboutSubTitle: "Detailed information about your company",
-        Toggle:"true",
+        Toggle: "true",
       },
 
       serviceSection: {
@@ -49,7 +50,7 @@ router.post("/signup", async (req, res) => {
         services3Title: "Data and Analytics (Service 3)",
         services3Desc: "Description about service 3",
 
-        Toggle:"true",
+        Toggle: "true",
       },
 
       footerSection: {
@@ -57,16 +58,11 @@ router.post("/signup", async (req, res) => {
         instagram: "instagram",
         twitter: "twitter",
         linkedIn: "linkedIn",
-        Toggle:"true",
+        Toggle: "true",
       },
-
     },
 
     background: "#ffffff",
-    currentDate: today,
-    lastUpdated: today,
-
-
   });
 
   try {

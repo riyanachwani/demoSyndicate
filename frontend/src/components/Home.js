@@ -1,6 +1,6 @@
 import React from "react";
 import HeroImg from "../assets/logo/logo.png";
-import CustomMessage from "./Molecules/CustomMessage/CustomMessage";
+
 export default function Home() {
   return (
     <>

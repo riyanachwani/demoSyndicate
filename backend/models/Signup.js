@@ -107,44 +107,38 @@ const templateSchema = {
   footerSection: footerSectionSchema,
 };
 
-const SignupSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+const SignupSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
 
-  location: {
-    type: String,
-    required: true,
-  },
+    location: {
+      type: String,
+      required: true,
+    },
 
-  template: templateSchema,
-  
-  background: {
-    type: String,
-    required: true,
+    template: templateSchema,
+
+    background: {
+      type: String,
+      required: true,
+    },
   },
-  
-  currentDate: {
-    type: Date,
-    required: true,
-  },
-  
-  lastUpdated: {
-    type: Date,
-    required: true,
-  },
-  
-});
+  {
+    timestamps: true,
+  }
+);
 
 //Pass it to mongoose
 const Signup = mongoose.model("SignupNested", SignupSchema, "SignupNested");

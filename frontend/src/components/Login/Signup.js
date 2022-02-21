@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useEffect } from "react";
 import SignImg from "../../assets/illustration/signup.png";
 import Axios from "axios";
 import Input from "../Atoms/Input";
@@ -14,12 +13,6 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
-
-  const [List, setList] = useState([]);
-
-  const username = List.map((val) => {
-    return val.name;
-  });
 
   // Toast Properties
   const toastOptions = {
